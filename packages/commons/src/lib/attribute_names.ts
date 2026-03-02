@@ -22,8 +22,16 @@ type Labels = {
     pageUrl: string;
     dateNote: string;
 
+    // Versioning
+    disableVersioning: boolean;
+    versioningLimit: number;
+
+    // Export
+    excludeFromExport: boolean;
+
     // Scripting
     run: string;
+    disableInclusion: boolean;
     widget: boolean;
     "disabled:widget": boolean;
 
@@ -67,8 +75,13 @@ type Labels = {
     mapType: string;
     mapRootNoteId: string;
 
+    appCss: boolean;
     appTheme: string;
     appThemeBase: string;
+
+    // Sorting
+    sortDirection: string;
+    sortFoldersFirst: boolean;
 }
 
 /**

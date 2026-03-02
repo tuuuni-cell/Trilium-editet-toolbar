@@ -73,6 +73,9 @@ export default class TreeContextMenu implements SelectMenuItemEventListener<Tree
 
         const notSearch = note?.type !== "search";
         const hasSubtreeHidden = note?.isLabelTruthy("subtreeHidden") ?? false;
+        const hasSorted = note?.hasLabel("sorted") ?? false;
+        const currentSortDirection = (note?.getLabelValue("sortDirection") ?? "ASC").toUpperCase();
+        const hasSortFoldersFirst = note?.isLabelTruthy("sortFoldersFirst") ?? false;
         const isSpotlighted = this.node.extraClasses.includes("spotlighted-node");
         const notOptionsOrHelp = !note?.noteId.startsWith("_options") && !note?.noteId.startsWith("_help");
         const parentNotSearch = !parentNote || parentNote.type !== "search";
@@ -171,6 +174,44 @@ export default class TreeContextMenu implements SelectMenuItemEventListener<Tree
                         uiIcon: "bx bx-sort-down",
                         enabled: noSelectedNotes && notSearch
                     },
+                    hasSorted ? {
+                        title: t("tree-context-menu.sort-direction"),
+                        uiIcon: "bx bx-sort-alt-2",
+                        enabled: noSelectedNotes,
+                        items: [
+                            {
+                                title: t("tree-context-menu.sort-ascending"),
+                                uiIcon: "bx bx-sort-up",
+                                checked: currentSortDirection === "ASC",
+                                handler: async () => {
+                                    const note = await froca.getNote(this.node.data.noteId);
+                                    if (!note) return;
+                                    attributes.setLabel(note.noteId, "sortDirection", "ASC");
+                                }
+                            },
+                            {
+                                title: t("tree-context-menu.sort-descending"),
+                                uiIcon: "bx bx-sort-down",
+                                checked: currentSortDirection === "DESC",
+                                handler: async () => {
+                                    const note = await froca.getNote(this.node.data.noteId);
+                                    if (!note) return;
+                                    attributes.setLabel(note.noteId, "sortDirection", "DESC");
+                                }
+                            },
+                            { kind: "separator" },
+                            {
+                                title: t("tree-context-menu.sort-folders-first"),
+                                uiIcon: "bx bx-folder",
+                                checked: hasSortFoldersFirst,
+                                handler: async () => {
+                                    const note = await froca.getNote(this.node.data.noteId);
+                                    if (!note) return;
+                                    attributes.setBooleanWithInheritance(note, "sortFoldersFirst", !hasSortFoldersFirst);
+                                }
+                            }
+                        ]
+                    } : null,
 
                     { kind: "separator" },
 
