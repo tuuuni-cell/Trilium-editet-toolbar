@@ -726,7 +726,18 @@
     "app_css": "Custom CSS",
     "app_css_description": "Load this CSS note into the Trilium application.",
     "app_theme": "App theme",
-    "app_theme_description": "Make this CSS note available as a Trilium theme."
+    "app_theme_description": "Make this CSS note available as a Trilium theme.",
+    "toc": "Table of contents",
+    "toc_auto": "Auto (default)",
+    "toc_show": "Always show",
+    "toc_hide": "Always hide",
+    "hide_promoted_attributes": "Hide promoted attributes",
+    "hide_children_overview": "Hide children overview",
+    "hide_highlight_widget": "Hide highlight widget",
+    "pdf_settings": "PDF settings",
+    "pdf_landscape": "Landscape orientation",
+    "pdf_page_size": "Page size",
+    "pdf_default": "default"
   },
   "onclick_button": {
     "no_click_handler": "Button widget '{{componentId}}' has no defined click handler"
@@ -801,7 +812,9 @@
     "editable": "Editable",
     "basic_properties": "Basic Properties",
     "language": "Language",
-    "configure_code_notes": "Configure code notes..."
+    "configure_code_notes": "Configure code notes...",
+    "title_template": "Title template",
+    "title_template_placeholder": "e.g. ${now.format('YYYY-MM-DD')}"
   },
   "book_properties": {
     "view_type": "View type",
@@ -1215,7 +1228,10 @@
     "layout-horizontal-description": "launcher bar is underneath the tab bar, the tab bar is now full width.",
     "edit_current_theme": "Edit current theme",
     "custom_themes": "Custom themes",
-    "active": "active"
+    "active": "active",
+    "custom_css_notes": "Custom CSS notes",
+    "no_custom_css": "No custom CSS notes active. Add the #appCss label to a CSS code note to load it.",
+    "custom_css_hint": "To add custom CSS, create a Code note with CSS type and add the #appCss label."
   },
   "ui-performance": {
     "title": "Performance",
@@ -1555,6 +1571,9 @@
     "sort-ascending": "Ascending",
     "sort-descending": "Descending",
     "sort-folders-first": "Folders first",
+    "new-notes-on-top": "New notes on top",
+    "set-keyboard-shortcut": "Set keyboard shortcut...",
+    "keyboard-shortcut-prompt": "Enter a keyboard shortcut (e.g. ctrl+alt+e). Leave empty to remove.",
     "recent-changes-in-subtree": "Recent changes in subtree",
     "convert-to-attachment": "Convert to attachment",
     "copy-note-path-to-clipboard": "Copy note path to clipboard",
@@ -2024,7 +2043,8 @@
     "vector_light": "Vector (Light)",
     "vector_dark": "Vector (Dark)",
     "show-scale": "Show scale",
-    "show-labels": "Show marker names"
+    "show-labels": "Show marker names",
+    "page-size": "Items per page:"
   },
   "table_context_menu": {
     "delete_row": "Delete row"

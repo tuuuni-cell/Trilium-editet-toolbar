@@ -16,7 +16,15 @@ interface BookConfig {
 
 export const bookPropertiesConfig: Record<ViewTypeOptions, BookConfig> = {
     grid: {
-        properties: []
+        properties: [
+            {
+                label: t("book_properties_config.page-size"),
+                icon: "bx bx-grid-alt",
+                type: "number",
+                bindToLabel: "pageSize",
+                width: 65
+            }
+        ]
     },
     list: {
         properties: [

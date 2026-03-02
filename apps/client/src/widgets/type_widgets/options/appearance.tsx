@@ -4,6 +4,7 @@ import { FontFamily, OptionNames } from "@triliumnext/commons";
 import { useEffect, useState } from "preact/hooks";
 
 import appContext from "../../../components/app_context";
+import froca from "../../../services/froca";
 import { t } from "../../../services/i18n";
 import server from "../../../services/server";
 import { isElectron, isMobile, reloadFrontendApp, restartDesktopApp } from "../../../services/utils";
@@ -318,7 +319,54 @@ function ApplicationTheme() {
                     </ul>
                 </div>
             )}
+
+            <CustomCssNotes />
         </OptionsSection>
+    );
+}
+
+interface CssNoteInfo {
+    noteId: string;
+    title: string;
+}
+
+function CustomCssNotes() {
+    const [ cssNotes, setCssNotes ] = useState<CssNoteInfo[]>([]);
+
+    useEffect(() => {
+        const noteIds: string[] = glob.appCssNoteIds || [];
+        if (noteIds.length === 0) {
+            setCssNotes([]);
+            return;
+        }
+        Promise.all(noteIds.map(id => froca.getNote(id))).then(notes => {
+            setCssNotes(notes
+                .filter((n): n is NonNullable<typeof n> => !!n)
+                .map(n => ({ noteId: n.noteId, title: n.title }))
+            );
+        });
+    }, []);
+
+    return (
+        <div style={{ marginTop: "12px" }}>
+            <h5>{t("theme.custom_css_notes")}</h5>
+            {cssNotes.length === 0 ? (
+                <FormText>{t("theme.no_custom_css")}</FormText>
+            ) : (
+                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                    {cssNotes.map(cn => (
+                        <li key={cn.noteId} style={{ display: "flex", alignItems: "center", gap: "8px", padding: "2px 0" }}>
+                            <Icon icon="bx bx-code-alt" />
+                            <a href="#" onClick={(e) => {
+                                e.preventDefault();
+                                appContext.tabManager.openTabWithNoteWithHoisting(cn.noteId);
+                            }}>{cn.title}</a>
+                        </li>
+                    ))}
+                </ul>
+            )}
+            <FormText style={{ marginTop: "4px" }}>{t("theme.custom_css_hint")}</FormText>
+        </div>
     );
 }
 

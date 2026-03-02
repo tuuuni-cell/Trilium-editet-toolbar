@@ -76,6 +76,7 @@ export default class TreeContextMenu implements SelectMenuItemEventListener<Tree
         const hasSorted = note?.hasLabel("sorted") ?? false;
         const currentSortDirection = (note?.getLabelValue("sortDirection") ?? "ASC").toUpperCase();
         const hasSortFoldersFirst = note?.isLabelTruthy("sortFoldersFirst") ?? false;
+        const hasNewNotesOnTop = note?.isLabelTruthy("newNotesOnTop") ?? false;
         const isSpotlighted = this.node.extraClasses.includes("spotlighted-node");
         const notOptionsOrHelp = !note?.noteId.startsWith("_options") && !note?.noteId.startsWith("_help");
         const parentNotSearch = !parentNote || parentNote.type !== "search";
@@ -212,8 +213,41 @@ export default class TreeContextMenu implements SelectMenuItemEventListener<Tree
                             }
                         ]
                     } : null,
+                    {
+                        title: t("tree-context-menu.new-notes-on-top"),
+                        uiIcon: "bx bx-arrow-to-top",
+                        checked: hasNewNotesOnTop,
+                        handler: async () => {
+                            const note = await froca.getNote(this.node.data.noteId);
+                            if (!note) return;
+                            attributes.setBooleanWithInheritance(note, "newNotesOnTop", !hasNewNotesOnTop);
+                        }
+                    },
 
                     { kind: "separator" },
+
+                    {
+                        title: t("tree-context-menu.set-keyboard-shortcut"),
+                        uiIcon: "bx bx-command",
+                        enabled: noSelectedNotes,
+                        handler: async () => {
+                            const note = await froca.getNote(this.node.data.noteId);
+                            if (!note) return;
+                            const currentShortcut = note.getLabelValue("keyboardShortcut") ?? "";
+                            const newShortcut = await dialogService.prompt({
+                                title: t("tree-context-menu.set-keyboard-shortcut"),
+                                message: t("tree-context-menu.keyboard-shortcut-prompt"),
+                                defaultValue: currentShortcut
+                            });
+                            if (newShortcut !== null) {
+                                if (newShortcut) {
+                                    attributes.setLabel(note.noteId, "keyboardShortcut", newShortcut);
+                                } else {
+                                    attributes.removeOwnedLabelByName(note, "keyboardShortcut");
+                                }
+                            }
+                        }
+                    },
 
                     { title: t("tree-context-menu.copy-note-path-to-clipboard"), command: "copyNotePathToClipboard", uiIcon: "bx bx-directions", enabled: true },
                     { title: t("tree-context-menu.recent-changes-in-subtree"), command: "recentChangesInSubtree", uiIcon: "bx bx-history", enabled: noSelectedNotes && notOptionsOrHelp }

@@ -144,6 +144,7 @@ export function NoteContextMenu({ note, noteContext, itemsAtStart, itemsNearNote
                     defaultType: "single"
                 })} />
             {isElectron && <CommandItem command="exportAsPdf" icon="bx bxs-file-pdf" disabled={!isPrintable} text={t("note_actions.print_pdf")} />}
+            {isElectron && isPrintable && <PdfSettings note={note} />}
             {isExportableToImage && isNormalViewMode && isContentAvailable && <ExportAsImage ntxId={noteContext.ntxId} parentComponent={parentComponent} />}
             <CommandItem command="printActiveNote" icon="bx bx-printer" disabled={!isPrintable} text={t("note_actions.print_note")} />
 
@@ -354,10 +355,42 @@ function AdvancedAttributeToggles({ note }: { note: FNote }) {
     const [ calendarRoot, setCalendarRoot ] = useNoteLabelBoolean(note, "calendarRoot");
     const [ excludeFromExport, setExcludeFromExport ] = useNoteLabelBoolean(note, "excludeFromExport");
     const [ disableInclusion, setDisableInclusion ] = useNoteLabelBoolean(note, "disableInclusion");
+    const [ hidePromotedAttributes, setHidePromotedAttributes ] = useNoteLabelBoolean(note, "hidePromotedAttributes");
+    const [ hideChildrenOverview, setHideChildrenOverview ] = useNoteLabelBoolean(note, "hideChildrenOverview");
+    const [ hideHighlightWidget, setHideHighlightWidget ] = useNoteLabelBoolean(note, "hideHighlightWidget");
     const isCodeNote = note.type === "code";
+
+    // toc: "" = show, "false" = hide, null = auto
+    //@ts-expect-error toc is a string label but useNoteLabel expects specific types
+    const [ tocValue, setTocValue ] = useNoteLabel(note, "toc");
+    const tocState = tocValue === null ? "auto" : (tocValue === "false" ? "hide" : "show");
 
     return (
         <>
+            <FormDropdownSubmenu icon="bx bx-list-ol" title={t("note_actions.toc")} dropStart>
+                <FormListItem checked={tocState === "auto"} onClick={() => setTocValue(null)}>{t("note_actions.toc_auto")}</FormListItem>
+                <FormListItem checked={tocState === "show"} onClick={() => setTocValue("")}>{t("note_actions.toc_show")}</FormListItem>
+                <FormListItem checked={tocState === "hide"} onClick={() => setTocValue("false")}>{t("note_actions.toc_hide")}</FormListItem>
+            </FormDropdownSubmenu>
+            <FormListToggleableItem
+                icon="bx bx-hide"
+                title={t("note_actions.hide_promoted_attributes")}
+                currentValue={hidePromotedAttributes}
+                onChange={setHidePromotedAttributes}
+            />
+            <FormListToggleableItem
+                icon="bx bx-grid-alt"
+                title={t("note_actions.hide_children_overview")}
+                currentValue={hideChildrenOverview}
+                onChange={setHideChildrenOverview}
+            />
+            <FormListToggleableItem
+                icon="bx bx-highlight"
+                title={t("note_actions.hide_highlight_widget")}
+                currentValue={hideHighlightWidget}
+                onChange={setHideHighlightWidget}
+            />
+            <FormDropdownDivider />
             <FormListToggleableItem
                 icon="bx bx-calendar"
                 title={t("note_actions.calendar_root")}
@@ -382,5 +415,41 @@ function AdvancedAttributeToggles({ note }: { note: FNote }) {
                 />
             )}
         </>
+    );
+}
+
+const PDF_PAGE_SIZES = [
+    { val: "", title: `Letter (${t("note_actions.pdf_default")})` },
+    { val: "A3", title: "A3" },
+    { val: "A4", title: "A4" },
+    { val: "A5", title: "A5" },
+    { val: "Legal", title: "Legal" },
+    { val: "Letter", title: "Letter" },
+    { val: "Tabloid", title: "Tabloid" }
+];
+
+function PdfSettings({ note }: { note: FNote }) {
+    const [ printLandscape, setPrintLandscape ] = useNoteLabelBoolean(note, "printLandscape");
+    //@ts-expect-error printPageSize is a string label but useNoteLabel expects specific types
+    const [ printPageSize, setPrintPageSize ] = useNoteLabel(note, "printPageSize");
+
+    return (
+        <FormDropdownSubmenu icon="bx bx-cog" title={t("note_actions.pdf_settings")} dropStart>
+            <FormListToggleableItem
+                icon="bx bx-landscape"
+                title={t("note_actions.pdf_landscape")}
+                currentValue={printLandscape}
+                onChange={setPrintLandscape}
+            />
+            <FormDropdownSubmenu icon="bx bx-file" title={t("note_actions.pdf_page_size")} dropStart>
+                {PDF_PAGE_SIZES.map(ps => (
+                    <FormListItem
+                        key={ps.val}
+                        checked={(printPageSize ?? "") === ps.val}
+                        onClick={() => setPrintPageSize(ps.val || null)}
+                    >{ps.title}</FormListItem>
+                ))}
+            </FormDropdownSubmenu>
+        </FormDropdownSubmenu>
     );
 }

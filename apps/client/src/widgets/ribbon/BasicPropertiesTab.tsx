@@ -15,6 +15,7 @@ import toast from "../../services/toast";
 import Dropdown from "../react/Dropdown";
 import FormDropdownList from "../react/FormDropdownList";
 import { FormDropdownDivider, FormListBadge, FormListItem } from "../react/FormList";
+import FormTextBox from "../react/FormTextBox";
 import FormToggle from "../react/FormToggle";
 import HelpButton from "../react/HelpButton";
 import { useNoteLabel, useNoteLabelBoolean, useNoteProperty, useTriliumEvent, useTriliumOption } from "../react/hooks";
@@ -33,6 +34,7 @@ export default function BasicPropertiesTab({ note }: TabContext) {
             <BookmarkSwitch note={note} />
             <SharedSwitch note={note} />
             <TemplateSwitch note={note} />
+            <TitleTemplateInput note={note} />
             <NoteLanguageSwitch note={note} />
         </div>
     );
@@ -408,6 +410,27 @@ export function ContentLanguagesModal({ modalShown, setModalShown }: { modalShow
         >
             <ContentLanguagesList />
         </Modal>
+    );
+}
+
+function TitleTemplateInput({ note }: { note?: FNote | null }) {
+    //@ts-expect-error titleTemplate is a string label but useNoteLabel expects specific types
+    const [ titleTemplate, setTitleTemplate ] = useNoteLabel(note, "titleTemplate");
+
+    if (!titleTemplate && titleTemplate !== "") {
+        return null;
+    }
+
+    return (
+        <div className="title-template-container" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+            <span>{t("basic_properties.title_template")}:</span>
+            <FormTextBox
+                currentValue={titleTemplate ?? ""}
+                onBlur={(val) => setTitleTemplate(val || null)}
+                placeholder={t("basic_properties.title_template_placeholder")}
+                style={{ flex: 1, minWidth: "120px" }}
+            />
+        </div>
     );
 }
 

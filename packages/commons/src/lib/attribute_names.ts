@@ -75,6 +75,20 @@ type Labels = {
     mapType: string;
     mapRootNoteId: string;
 
+    // Display
+    toc: string;
+    hidePromotedAttributes: boolean;
+    hideChildrenOverview: boolean;
+    hideHighlightWidget: boolean;
+    newNotesOnTop: boolean;
+
+    // Print/PDF
+    printLandscape: boolean;
+    printPageSize: string;
+
+    // Title
+    titleTemplate: string;
+
     appCss: boolean;
     appTheme: string;
     appThemeBase: string;
