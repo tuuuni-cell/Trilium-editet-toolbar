@@ -8,6 +8,7 @@ import { Dispatch, StateUpdater, useEffect, useRef, useState } from "preact/hook
 
 import appContext from "../../components/app_context";
 import FNote from "../../entities/fnote";
+import attributes from "../../services/attributes";
 import dialog from "../../services/dialog";
 import froca from "../../services/froca";
 import { t } from "../../services/i18n";
@@ -20,9 +21,11 @@ import toast from "../../services/toast";
 import utils from "../../services/utils";
 import ActionButton from "../react/ActionButton";
 import Button from "../react/Button";
+import FormCheckbox from "../react/FormCheckbox";
 import FormList, { FormListItem } from "../react/FormList";
+import FormSelect from "../react/FormSelect";
 import FormToggle from "../react/FormToggle";
-import { useTriliumEvent } from "../react/hooks";
+import { useNoteLabel, useNoteLabelBoolean, useTriliumEvent } from "../react/hooks";
 import Modal from "../react/Modal";
 import { RawHtmlBlock } from "../react/RawHtml";
 import PdfViewer from "../type_widgets/file/PdfViewer";
@@ -335,12 +338,25 @@ function RevisionContentDiff({ noteContent, itemContent, itemType }: {
     return <div ref={contentRef} className="ck-content" style={{ whiteSpace: "pre-wrap" }} />;
 }
 
+const VERSIONING_LIMIT_OPTIONS = [
+    { val: "", title: t("revisions.use_global_setting") },
+    { val: "10", title: "10" },
+    { val: "50", title: "50" },
+    { val: "100", title: "100" },
+    { val: "500", title: "500" },
+    { val: "-1", title: "∞" }
+];
+
 function RevisionFooter({ note }: { note?: FNote }) {
     if (!note) {
         return <></>;
     }
 
-    let revisionsNumberLimit: number | string = parseInt(note?.getLabelValue("versioningLimit") ?? "", 10);
+    const [ disableVersioning, setDisableVersioning ] = useNoteLabelBoolean(note, "disableVersioning");
+    //@ts-expect-error versioningLimit is a number label but useNoteLabel expects string
+    const [ rawLimit, setRawLimit ] = useNoteLabel(note, "versioningLimit");
+
+    let revisionsNumberLimit: number | string = parseInt(rawLimit ?? "", 10);
     if (!Number.isInteger(revisionsNumberLimit)) {
         revisionsNumberLimit = options.getInt("revisionSnapshotNumberLimit") ?? 0;
     }
@@ -348,18 +364,41 @@ function RevisionFooter({ note }: { note?: FNote }) {
         revisionsNumberLimit = "∞";
     }
 
-    return <>
-        <span class="revisions-snapshot-interval flex-grow-1 my-0 py-0">
+    return <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap", width: "100%", padding: "6px 0" }}>
+        <span class="revisions-snapshot-interval my-0 py-0" style={{ whiteSpace: "nowrap" }}>
             {t("revisions.snapshot_interval", { seconds: options.getInt("revisionSnapshotTimeInterval") })}
         </span>
-        <span class="maximum-revisions-for-current-note flex-grow-1 my-0 py-0">
+        <span class="maximum-revisions-for-current-note my-0 py-0" style={{ whiteSpace: "nowrap" }}>
             {t("revisions.maximum_revisions", { number: revisionsNumberLimit })}
         </span>
+
+        <span style={{ borderLeft: "1px solid var(--border-color)", height: "20px" }} />
+
+        <FormCheckbox
+            label={t("revisions.disable_versioning")}
+            name="disable-versioning"
+            currentValue={disableVersioning}
+            onChange={setDisableVersioning}
+        />
+
+        <span style={{ display: "flex", alignItems: "center", gap: "4px", whiteSpace: "nowrap" }}>
+            <label style={{ margin: 0, fontSize: "inherit" }}>{t("revisions.versioning_limit")}:</label>
+            <FormSelect
+                values={VERSIONING_LIMIT_OPTIONS}
+                currentValue={rawLimit ?? ""}
+                onChange={(val) => setRawLimit(val || null)}
+                keyProperty="val"
+                titleProperty="title"
+                style={{ width: "auto", minWidth: "80px", padding: "2px 6px", height: "auto" }}
+            />
+        </span>
+
+        <span style={{ flexGrow: 1 }} />
         <ActionButton
             icon="bx bx-cog" text={t("revisions.settings")}
             onClick={() => appContext.tabManager.openContextWithNote("_optionsOther", { activate: true })}
         />
-    </>;
+    </div>;
 }
 
 function FilePreview({ revisionItem, fullRevision }: { revisionItem: RevisionItem, fullRevision: RevisionPojo }) {

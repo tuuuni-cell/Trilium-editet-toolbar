@@ -3,6 +3,7 @@ import "./appearance.css";
 import { FontFamily, OptionNames } from "@triliumnext/commons";
 import { useEffect, useState } from "preact/hooks";
 
+import appContext from "../../../components/app_context";
 import { t } from "../../../services/i18n";
 import server from "../../../services/server";
 import { isElectron, isMobile, reloadFrontendApp, restartDesktopApp } from "../../../services/utils";
@@ -265,6 +266,9 @@ function ApplicationTheme() {
         });
     }, []);
 
+    const selectedTheme = themes.find(t => t.val === theme);
+    const userThemes = themes.filter(t => t.noteId);
+
     return (
         <OptionsSection title={t("theme.title")}>
             <div className="row">
@@ -281,6 +285,39 @@ function ApplicationTheme() {
                         currentValue={overrideThemeFonts} onChange={setOverrideThemeFonts} />
                 </FormGroup>
             </div>
+
+            {selectedTheme?.noteId && (
+                <div style={{ marginTop: "8px" }}>
+                    <Button
+                        icon="bx bx-edit-alt"
+                        text={t("theme.edit_current_theme")}
+                        size="micro"
+                        onClick={() => {
+                            appContext.tabManager.openTabWithNoteWithHoisting(selectedTheme.noteId!);
+                        }}
+                    />
+                </div>
+            )}
+
+            {userThemes.length > 0 && (
+                <div style={{ marginTop: "12px" }}>
+                    <h5>{t("theme.custom_themes")}</h5>
+                    <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                        {userThemes.map(ut => (
+                            <li key={ut.noteId} style={{ display: "flex", alignItems: "center", gap: "8px", padding: "2px 0" }}>
+                                <Icon icon="bx bx-palette" />
+                                <a href="#" onClick={(e) => {
+                                    e.preventDefault();
+                                    if (ut.noteId) {
+                                        appContext.tabManager.openTabWithNoteWithHoisting(ut.noteId);
+                                    }
+                                }}>{ut.title}</a>
+                                {ut.val === theme && <span style={{ opacity: 0.6, fontSize: "0.85em" }}>({t("theme.active")})</span>}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </OptionsSection>
     );
 }

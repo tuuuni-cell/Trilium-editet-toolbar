@@ -151,7 +151,6 @@ export function NoteContextMenu({ note, noteContext, itemsAtStart, itemsNearNote
 
             <CommandItem command="showRevisions" icon="bx bx-history" text={t("note_actions.view_revisions")} />
             <CommandItem command="forceSaveRevision" icon="bx bx-save" disabled={isInOptionsOrHelp} text={t("note_actions.save_revision")} />
-            <VersioningSettings note={note} />
 
             <FormDropdownDivider />
 
@@ -351,45 +350,10 @@ function ExportAsImage({ ntxId, parentComponent }: { ntxId: string | null | unde
     );
 }
 
-function VersioningSettings({ note }: { note: FNote }) {
-    const [ disableVersioning, setDisableVersioning ] = useNoteLabelBoolean(note, "disableVersioning");
-    //@ts-expect-error versioningLimit is a number label but useNoteLabel expects string
-    const [ rawLimit, setRawLimit ] = useNoteLabel(note, "versioningLimit");
-    const versioningLimit = rawLimit ? parseInt(rawLimit, 10) : undefined;
-
-    function setLimit(value: number | null) {
-        if (value === null) {
-            setRawLimit(null);
-        } else {
-            setRawLimit(String(value));
-        }
-    }
-
-    return (
-        <>
-            <FormListToggleableItem
-                icon="bx bx-block"
-                title={t("note_actions.disable_versioning")}
-                description={t("note_actions.disable_versioning_description")}
-                currentValue={disableVersioning}
-                onChange={setDisableVersioning}
-            />
-            <FormDropdownSubmenu icon="bx bx-slider" title={t("note_actions.versioning_limit")} dropStart>
-                <FormListItem checked={versioningLimit === undefined} onClick={() => setLimit(null)}>{t("note_actions.no_limit")}</FormListItem>
-                <FormListItem checked={versioningLimit === 10} onClick={() => setLimit(10)}>10</FormListItem>
-                <FormListItem checked={versioningLimit === 50} onClick={() => setLimit(50)}>50</FormListItem>
-                <FormListItem checked={versioningLimit === 100} onClick={() => setLimit(100)}>100</FormListItem>
-                <FormListItem checked={versioningLimit === 500} onClick={() => setLimit(500)}>500</FormListItem>
-            </FormDropdownSubmenu>
-        </>
-    );
-}
-
 function AdvancedAttributeToggles({ note }: { note: FNote }) {
     const [ calendarRoot, setCalendarRoot ] = useNoteLabelBoolean(note, "calendarRoot");
     const [ excludeFromExport, setExcludeFromExport ] = useNoteLabelBoolean(note, "excludeFromExport");
     const [ disableInclusion, setDisableInclusion ] = useNoteLabelBoolean(note, "disableInclusion");
-    const [ appCss, setAppCss ] = useNoteLabelBoolean(note, "appCss");
     const isCodeNote = note.type === "code";
 
     return (
@@ -415,15 +379,6 @@ function AdvancedAttributeToggles({ note }: { note: FNote }) {
                     description={t("note_actions.disable_inclusion_description")}
                     currentValue={disableInclusion}
                     onChange={setDisableInclusion}
-                />
-            )}
-            {isCodeNote && (
-                <FormListToggleableItem
-                    icon="bx bx-palette"
-                    title={t("note_actions.app_css")}
-                    description={t("note_actions.app_css_description")}
-                    currentValue={appCss}
-                    onChange={setAppCss}
                 />
             )}
         </>
