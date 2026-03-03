@@ -1,84 +1,84 @@
 :root {
     --theme-style: dark;
 
-    --main-font-family: Montserrat, sans-serif;
+    --main-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", sans-serif;
     --main-font-size: normal;
 
-    --tree-font-family: Montserrat, sans-serif;
+    --tree-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", sans-serif;
     --tree-font-size: normal;
 
-    --detail-font-family: Montserrat, sans-serif;
+    --detail-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", sans-serif;
     --detail-font-size: normal;
 
-    --monospace-font-family: JetBrainsLight, monospace;
+    --monospace-font-family: "SF Mono", "JetBrains Mono", JetBrainsLight, "Menlo", monospace;
     --monospace-font-size: normal;
 
-    --main-background-color: #333;
-    --main-text-color: #ccc;
-    --main-border-color: #aaa;
-    --dropdown-border-color: #555;
-    --dropdown-shadow-opacity: 0.4;
-    --dropdown-item-icon-destructive-color: #de6e5b;
-    --contextual-help-icon-color: #7fd2ef;
+    --main-background-color: #1c1c1e;
+    --main-text-color: #f5f5f7;
+    --main-border-color: #38383a;
+    --dropdown-border-color: #48484a;
+    --dropdown-shadow-opacity: 0.5;
+    --dropdown-item-icon-destructive-color: #ff6961;
+    --contextual-help-icon-color: #64d2ff;
 
-    --accented-background-color: #555;
-    --more-accented-background-color: #777;
+    --accented-background-color: #2c2c2e;
+    --more-accented-background-color: #3a3a3c;
 
     --button-background-color: transparent;
-    --button-border-color: #ccc;
-    --button-text-color: currentColor;
-    --button-border-radius: 5px;
+    --button-border-color: #48484a;
+    --button-text-color: #f5f5f7;
+    --button-border-radius: 8px;
     --button-disabled-background-color: transparent;
-    --button-disabled-text-color: #999;
+    --button-disabled-text-color: #636366;
 
-    --primary-button-background-color: #888;
+    --primary-button-background-color: #0a84ff;
     --primary-button-text-color: white;
-    --primary-button-border-color: #999;
+    --primary-button-border-color: #0a84ff;
 
-    --muted-text-color: #bbb;
+    --muted-text-color: #98989d;
 
-    --input-text-color: #ccc;
-    --input-background-color: #333;
+    --input-text-color: #f5f5f7;
+    --input-background-color: #2c2c2e;
 
-    --hover-item-text-color: #ccc;
-    --hover-item-background-color: transparent;
-    --hover-item-border-color: #aaa;
+    --hover-item-text-color: #f5f5f7;
+    --hover-item-background-color: rgba(255, 255, 255, 0.06);
+    --hover-item-border-color: transparent;
 
-    --active-item-text-color: black;
-    --active-item-background-color: #777;
+    --active-item-text-color: #f5f5f7;
+    --active-item-background-color: rgba(10, 132, 255, 0.2);
     --active-item-border-color: transparent;
 
-    --menu-text-color: white;
-    --menu-background-color: #222;
+    --menu-text-color: #f5f5f7;
+    --menu-background-color: #2c2c2e;
 
-    --modal-background-color: #333;
-    --modal-backdrop-color: #444;
+    --modal-background-color: #2c2c2e;
+    --modal-backdrop-color: rgba(0, 0, 0, 0.5);
 
-    --left-pane-background-color: #1f1f1f;
-    --left-pane-text-color: #aaaaaa;
+    --left-pane-background-color: #1c1c1e;
+    --left-pane-text-color: #e5e5ea;
 
-    --launcher-pane-background-color: #1f1f1f;
-    --launcher-pane-text-color: #aaaaaa;
+    --launcher-pane-background-color: #1c1c1e;
+    --launcher-pane-text-color: #98989d;
 
-    --active-tab-background-color: #666;
-    --active-tab-hover-background-color: #737373;
-    --active-tab-text-color: #ccc;
+    --active-tab-background-color: rgba(255, 255, 255, 0.08);
+    --active-tab-hover-background-color: rgba(255, 255, 255, 0.1);
+    --active-tab-text-color: #f5f5f7;
 
-    --inactive-tab-background-color: #444;
-    --inactive-tab-hover-background-color: #525252;
-    --inactive-tab-text-color: #bbb;
+    --inactive-tab-background-color: transparent;
+    --inactive-tab-hover-background-color: rgba(255, 255, 255, 0.04);
+    --inactive-tab-text-color: #636366;
 
-    --scrollbar-border-color: #666;
-    --scrollbar-background-color: #333;
-    --selection-background-color: #3399FF70;
-    --tooltip-background-color: #333;
-    --link-color: lightskyblue;
+    --scrollbar-border-color: transparent;
+    --scrollbar-background-color: transparent;
+    --selection-background-color: #0a84ff50;
+    --tooltip-background-color: rgba(58, 58, 60, 0.95);
+    --link-color: #0a84ff;
 
     --mermaid-theme: dark;
     --native-titlebar-background: #00000000;
 
-    --calendar-coll-event-background-saturation: 30%;
-    --calendar-coll-event-background-lightness: 30%;
+    --calendar-coll-event-background-saturation: 25%;
+    --calendar-coll-event-background-lightness: 18%;
 }
 
 body ::-webkit-calendar-picker-indicator {

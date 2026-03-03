@@ -4,8 +4,9 @@
 
 /* Modal body */
 .modal .modal-content {
-    box-shadow: 0 .5em 3em .5em var(--modal-shadow-color);
+    box-shadow: 0 8px 40px var(--modal-shadow-color);
     border: 1px solid var(--modal-border-color);
+    border-radius: 14px;
     background: var(--modal-background-color);
 }
 
@@ -17,7 +18,9 @@
 
 .modal .modal-header .modal-title {
     flex-grow: 1;
-    font-size: 1.2em;
+    font-size: 1.1em;
+    font-weight: 600;
+    letter-spacing: -0.01em;
     color: var(--modal-title-color);
 }
 
@@ -97,14 +100,15 @@
     background: var(--modal-footer-background);
     color: var(--modal-footer-color);
     border-top: unset;
+    border-radius: 0 0 14px 14px;
 }
 
 /* Tool dialogs - small dialogs without a backdrop */
 div.tn-tool-dialog {
-    border-radius: 10px;
+    border-radius: 14px;
     background: var(--tool-dialog-background-color) !important;
     user-select: none;
-    box-shadow: 10px 10px 93px -25px var(--tool-dialog-shadow-color);
+    box-shadow: 0 8px 32px var(--tool-dialog-shadow-color);
 }
 
 /*
@@ -124,10 +128,10 @@ div.tn-tool-dialog {
 .jump-to-note-dialog .modal-content {
     --bs-modal-header-padding-x: 0;
 
-    box-shadow: 0 10px 20px rgba(0, 0, 0, var(--dropdown-shadow-opacity));
+    box-shadow: 0 12px 40px rgba(0, 0, 0, var(--dropdown-shadow-opacity));
     border: 1px solid var(--dropdown-border-color);
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 14px;
 }
 
 .jump-to-note-dialog .modal-header {

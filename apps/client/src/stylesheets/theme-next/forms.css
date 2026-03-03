@@ -45,7 +45,8 @@ button.ck.ck-button:is(.ck-button-action, .ck-button-save, .ck-button-cancel, .c
     box-shadow: unset;
     background: var(--cmd-button-background-color) !important;
     color: var(--cmd-button-text-color) !important;
-    transform: scale(0.95);
+    transform: scale(0.97);
+    transition: transform 80ms ease;
 }
 
 button.btn.btn-primary:disabled,
@@ -273,7 +274,7 @@ input::selection,
     outline: 3px solid transparent;
     outline-offset: 6px;
     background: var(--input-background-color);
-    border-radius: 6px;
+    border-radius: 8px;
     padding-inline-end: 8px;
     color: var(--quick-search-color);
     flex-wrap: nowrap;

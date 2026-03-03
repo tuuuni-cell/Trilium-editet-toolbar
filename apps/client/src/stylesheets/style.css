@@ -87,7 +87,7 @@ body {
     --native-titlebar-foreground: var(--main-text-color);
     --native-titlebar-darwin-x-offset: 10;
     --native-titlebar-darwin-y-offset: 12;
-    --launcher-pane-height: 53px;
+    --launcher-pane-height: 48px;
     --tab-bar-height: 40px;
 }
 

@@ -249,6 +249,8 @@ html body .dropdown-item[disabled] {
     background: var(--badge-background-color);
     text-transform: uppercase;
     letter-spacing: .2pt;
+    border-radius: 6px;
+    font-size: 0.7em;
 }
 
 /* Menu item icon */
@@ -524,7 +526,7 @@ li.dropdown-item a.dropdown-item-button:focus-visible {
 
 #toast-container .toast {
     --bs-toast-padding-x: 12px;
-    --bs-border-radius: 8px;
+    --bs-border-radius: 12px;
     --bs-toast-bg: var(--toast-background);
     --bs-toast-color: var(--toast-text-color);
     --modal-control-button-background: var(--toast-close-button-background);
@@ -532,7 +534,7 @@ li.dropdown-item a.dropdown-item-button:focus-visible {
 
     display: flex;
     flex-direction: column;
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(12px);
 }
 
 #toast-container .toast .toast-header {
@@ -581,7 +583,7 @@ li.dropdown-item a.dropdown-item-button:focus-visible {
  */
 
  .tooltip .tooltip-inner:has(.note-tooltip-content) {
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
 .note-tooltip-content {
@@ -676,7 +678,8 @@ li.dropdown-item a.dropdown-item-button:focus-visible {
 div.alert {
     margin-bottom: 8px;
     background: var(--alert-bar-background) !important;
-    border-radius: 8px;
+    border-radius: 10px;
+    border: none;
     font-size: .85em;
 }
 

@@ -1383,6 +1383,9 @@ body.desktop .title-row {
 
     border-radius: 8px;
     padding-inline-start: 12px;
+    font-weight: 700;
+    font-size: 1.4em;
+    letter-spacing: -0.025em;
 }
 
 /* The "Change note icon" button */
