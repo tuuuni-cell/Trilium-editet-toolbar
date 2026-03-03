@@ -13,36 +13,40 @@
 }
 
 /*
- * GLOBAL VARIABLES
+ * GLOBAL VARIABLES - Apple Notes-Inspired Minimal Design
+ * Using system font stack for native Apple feel, with refined spacing
  */
 
 :root {
     color-scheme: var(--theme-style);
 
-    --main-font-family: "Inter", sans-serif;
+    /* Apple system font stack - SF Pro on macOS, system-ui elsewhere */
+    --main-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", sans-serif;
 
     --main-font-size: normal;
+    --main-font-weight: 400;
 
     --tree-font-family: var(--main-font-family);
-    --tree-font-size: normal;
+    --tree-font-size: 13px;
 
     --detail-font-family: var(--main-font-family);
     --detail-font-size: normal;
 
-    --monospace-font-family: JetBrainsLight, monospace;
+    --monospace-font-family: "SF Mono", "JetBrains Mono", JetBrainsLight, "Menlo", "Consolas", monospace;
     --monospace-font-size: normal;
 
-    --left-pane-item-selected-shadow-size: 2px;
+    --left-pane-item-selected-shadow-size: 1px;
 
-    --launcher-pane-vert-size: 58px;
-    --launcher-pane-vert-icon-size: 150%;
+    /* Launcher - slightly more compact */
+    --launcher-pane-vert-size: 52px;
+    --launcher-pane-vert-icon-size: 140%;
     --launcher-pane-vert-button-margin: 6px;
-    --launcher-pane-vert-button-gap: 3px;
+    --launcher-pane-vert-button-gap: 2px;
 
-    --launcher-pane-horiz-size: 54px;
-    --launcher-pane-horiz-icon-size: 20px;
+    --launcher-pane-horiz-size: 48px;
+    --launcher-pane-horiz-icon-size: 18px;
     --launcher-pane-horiz-button-margin: 8px;
-    --launcher-pane-horiz-button-gap: 3px;
+    --launcher-pane-horiz-button-gap: 2px;
 
     --tree-actions-toolbar-horizontal-margin: 8px;
     --tree-actions-toolbar-vertical-margin: 8px;
@@ -50,19 +54,21 @@
     --tree-actions-toolbar-collapsed-width: 40px;
     --tree-actions-toolbar-expand-button-size: 25px;
 
-    --tab-bar-height: 50px;
-    --tab-height: 36px;
+    /* Tabs - refined height */
+    --tab-bar-height: 44px;
+    --tab-height: 32px;
     --tab-first-item-horiz-offset: 0;
-    --new-tab-button-size: 24px;
+    --new-tab-button-size: 22px;
 
-    --center-pane-border-radius: 10px;
+    /* Center pane - softer corners */
+    --center-pane-border-radius: 12px;
 
-    --floating-button-height: 34px;
-    --floating-button-width: 40px;
-    --floating-button-icon-size: 20px;
-    --floating-button-show-hide-button-size: 26px;
+    --floating-button-height: 32px;
+    --floating-button-width: 36px;
+    --floating-button-icon-size: 18px;
+    --floating-button-show-hide-button-size: 24px;
 
-    --menu-padding-size: 8px;
+    --menu-padding-size: 6px;
     --menu-item-icon-vert-offset: -2px;
     --menu-submenu-mobile-background-color: rgba(255, 255, 255, 0.15);
 
@@ -72,14 +78,14 @@
     --timeline-right-gap: 20px;
     --timeline-item-top-padding: 4px;
     --timeline-item-bottom-padding: 8px;
-    --timeline-bullet-size: 10px;
+    --timeline-bullet-size: 8px;
     --timeline-bullet-vertical-pos: 0.75em;
-    --timeline-connector-size: 4px;
+    --timeline-connector-size: 2px;
 
-    --help-backdrop-blur: 10px;
+    --help-backdrop-blur: 16px;
 
-    --icon-button-size: 32px;
-    --icon-button-icon-ratio: 0.65;
+    --icon-button-size: 30px;
+    --icon-button-icon-ratio: 0.6;
 
     --modal-control-button-size: 22px;
 
@@ -87,23 +93,17 @@
     --tab-note-icons: true;
     --allow-background-effects: true;
 
-    /* To ensure that a tree item's custom color remains sufficiently contrasted and readable,
-     * the color is adjusted based on the current color scheme (light or dark). The lightness
-     * component of the color represented in the CIELAB color space, will be
-     * constrained to a certain percentage defined below.
-     *
-     * Note: the tree background may vary when background effects are enabled, so it is recommended
-     * to maintain a higher contrast margin than on the usual note tree solid background. */
-
-    /* The maximum perceptual lightness for the custom color in the light theme (%): */
+    /* Tree item color lightness constraints */
     --tree-item-light-theme-max-color-lightness: 60;
-
-    /* The minimum perceptual lightness for the custom color in the dark theme (%): */
     --tree-item-dark-theme-min-color-lightness: 65;
 }
 
 body {
     user-select: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    letter-spacing: -0.01em;
 }
 
 .selectable-text {
@@ -127,7 +127,8 @@ body.backdrop-effects-disabled {
  :root .excalidraw .popover {
     border-radius: var(--dropdown-border-radius);
     padding: var(--padding, var(--menu-padding-size)) !important;
-    font-size: 0.9rem !important;
+    font-size: 0.85rem !important;
+    font-weight: 400;
 }
 
 /* Use this class for non-legacy menus */

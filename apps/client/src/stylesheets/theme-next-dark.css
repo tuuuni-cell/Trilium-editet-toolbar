@@ -2,311 +2,328 @@
 @import url(./theme-next/base.css);
 
 /*
- * Color scheme
+ * Apple Notes-Inspired Dark Color Scheme
+ * Minimal, refined dark aesthetic matching Apple's design language
  */
 :root {
 
-    /*
-     * ⚠️ NOTICE: This theme is currently in the beta stage of development.
-     * The names and purposes of these CSS variables are subject to frequent changes.
-     */
-
     --theme-style: dark;
     --native-titlebar-background: #00000000;
-    --window-background-color-bgfx: transparent; /* When background effects enabled */
+    --window-background-color-bgfx: transparent;
 
-    --main-background-color: #242424;
-    --main-text-color: #ccc;
-    --main-border-color: #454545;
-    --subtle-border-color: #313131;
-    --dropdown-border-color: #404040;
-    --dropdown-shadow-opacity: 0.6;
-    --dropdown-item-icon-destructive-color: #d58477;
-    --contextual-help-icon-color: #7fd2ef;
+    /* Core colors - deep blacks and refined grays like Apple Notes dark mode */
+    --main-background-color: #1c1c1e;
+    --main-text-color: #f5f5f7;
+    --main-border-color: #38383a;
+    --subtle-border-color: #2c2c2e;
+    --dropdown-border-color: #48484a;
+    --dropdown-shadow-opacity: 0.5;
+    --dropdown-item-icon-destructive-color: #ff6961;
+    --contextual-help-icon-color: #64d2ff;
 
-    --accented-background-color: #555;
+    --accented-background-color: #2c2c2e;
 
-    --tool-dialog-background-color: #262626;
-    --tool-dialog-shadow-color: black;
+    --tool-dialog-background-color: #2c2c2e;
+    --tool-dialog-shadow-color: #000000;
 
     --button-text-color: currentColor;
 
-    --cmd-button-background-color: #ffffff28;
-    --cmd-button-text-color: #ffffffc2;
-    --cmd-button-hover-background-color: #ffffff37;
-    --cmd-button-hover-text-color: white;
-    --cmd-button-shadow-color: #00000080;
-    --cmd-button-icon-color: white;
-    --cmd-button-keyboard-shortcut-background: #0000004d;
-    --cmd-button-keyboard-shortcut-color: white;
-    --cmd-button-disabled-opacity: 0.5;
+    /* Command buttons - Apple dark style */
+    --cmd-button-background-color: #3a3a3c;
+    --cmd-button-text-color: #f5f5f7;
+    --cmd-button-hover-background-color: #48484a;
+    --cmd-button-hover-text-color: #ffffff;
+    --cmd-button-shadow-color: #00000060;
+    --cmd-button-icon-color: #f5f5f7;
+    --cmd-button-keyboard-shortcut-background: #48484a;
+    --cmd-button-keyboard-shortcut-color: #98989d;
+    --cmd-button-disabled-opacity: 0.4;
 
-    --button-group-active-button-background: #ffffff4e;
+    --button-group-active-button-background: #0a84ff;
     --button-group-active-button-text-color: white;
 
-    --icon-button-color: currentColor;
-    --icon-button-hover-background: var(--hover-item-background-color);
-    --icon-button-hover-color: var(--hover-item-text-color);
+    --icon-button-color: #98989d;
+    --icon-button-hover-background: rgba(255, 255, 255, 0.08);
+    --icon-button-hover-color: #f5f5f7;
 
-    --muted-text-color: #bbb;
+    --muted-text-color: #98989d;
 
-    --input-background-color: #ffffff12;
-    --input-text-color: #ffffffc7;
-    --input-placeholder-color: #b7b7b782;
-    --input-selection-background: gray;
-    --input-selection-text-color: white;
-    --input-hover-background: #ffffff1f;
-    --input-hover-color: var(--input-text-color);
-    --input-focus-outline-color: #ffffff57;
-    --input-focus-background: #ffffff1f;
-    --input-focus-color: white;
+    /* Inputs */
+    --input-background-color: #2c2c2e;
+    --input-text-color: #f5f5f7;
+    --input-placeholder-color: #636366;
+    --input-selection-background: #0a84ff50;
+    --input-selection-text-color: #f5f5f7;
+    --input-hover-background: #3a3a3c;
+    --input-hover-color: #f5f5f7;
+    --input-focus-outline-color: #0a84ff80;
+    --input-focus-background: #3a3a3c;
+    --input-focus-color: #ffffff;
 
-    --input-action-button-color: #c6c6c6;
-    --input-action-button-hover: white;
+    --input-action-button-color: #98989d;
+    --input-action-button-hover: #f5f5f7;
 
-    --radio-checkbox-background: #ffffff30;
-    --radio-checkbox-hover-background: #ffffff61;
-    --radio-checkbox-indicator-color: white;
+    --radio-checkbox-background: #48484a;
+    --radio-checkbox-hover-background: #636366;
+    --radio-checkbox-indicator-color: #0a84ff;
 
-    --select-focus-background: #333;
+    --select-focus-background: #3a3a3c;
     --select-focus-text-color: var(--input-text-color);
     --select-dropdown-text-color: var(--input-text-color);
-    --select-arrow-svg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='transparent' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>");
-    --select-group-heading-text-color: gray;
+    --select-arrow-svg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='transparent' stroke='%2398989d' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>");
+    --select-group-heading-text-color: #636366;
 
-    --link-color: #95c3d9;
-    --link-hover-background: #75c2e324;
-    --link-hover-color: var(--link-color);
-    --link-selection-outline-color: #75c2e385;
+    /* Links - Apple blue (dark mode variant) */
+    --link-color: #0a84ff;
+    --link-hover-background: #0a84ff20;
+    --link-hover-color: #409cff;
+    --link-selection-outline-color: #0a84ff80;
 
-    --hover-item-text-color: #efefef;
-    --hover-item-background-color: #ffffff16;
+    /* Hover states */
+    --hover-item-text-color: #f5f5f7;
+    --hover-item-background-color: rgba(255, 255, 255, 0.06);
     --hover-item-border-color: transparent;
 
-    --active-item-text-color: var(--left-pane-text-color);
-    --active-item-background-color: #777;
+    /* Active/selected states */
+    --active-item-text-color: #f5f5f7;
+    --active-item-background-color: rgba(10, 132, 255, 0.2);
     --active-item-border-color: transparent;
 
-    --new-tab-button-background: #fff0;
-    --new-tab-button-color: #ffffff96;
-    --new-tab-button-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-    --new-tab-button-hover-background: #fff3;
-    --new-tab-button-hover-color: white;
+    /* Menus - frosted glass dark */
+    --menu-text-color: #f5f5f7;
+    --menu-background-color: rgba(44, 44, 46, 0.85);
+    --menu-background-color-no-backdrop: #2c2c2e;
+    --menu-item-icon-color: #98989d;
+    --menu-item-disabled-opacity: 0.4;
+    --menu-item-keyboard-shortcut-color: #636366;
+    --menu-item-arrow-color: #636366;
+    --menu-item-delimiter-color: rgba(255, 255, 255, 0.08);
+    --menu-item-group-header-color: #636366;
+    --menu-section-background-color: rgba(255, 255, 255, 0.03);
+    --menu-submenu-mobile-background-color: rgba(0, 0, 0, 0.2);
 
-    --menu-text-color: #e3e3e3;
-    --menu-background-color: #222222d9;
-    --menu-background-color-no-backdrop: #1b1b1b;
-    --menu-item-icon-color: #8c8c8c;
-    --menu-item-disabled-opacity: 0.5;
-    --menu-item-keyboard-shortcut-color: #ffffff8f;
-    --menu-item-arrow-color: #ffffffa3;
-    --menu-item-delimiter-color: #ffffff1c;
-    --menu-item-group-header-color: #ffffff91;
-    --menu-section-background-color: #fefefe08;
-    --menu-submenu-mobile-background-color: rgba(0, 0, 0, 0.15);
-
-    --modal-backdrop-color: #000;
-    --modal-shadow-color: rgba(0, 0, 0, .5);
-    --modal-border-color: #ffffff23;
-    --modal-background-color: #262626;
-    --modal-title-color: gray;
-    --modal-control-button-background: #ffffff2b;
-    --modal-control-button-color: #cbcbcb;
+    /* Modals */
+    --modal-backdrop-color: rgba(0, 0, 0, 0.5);
+    --modal-shadow-color: rgba(0, 0, 0, 0.5);
+    --modal-border-color: #48484a;
+    --modal-background-color: #2c2c2e;
+    --modal-title-color: #98989d;
+    --modal-control-button-background: rgba(255, 255, 255, 0.1);
+    --modal-control-button-color: #98989d;
     --modal-control-button-hover-color: white;
-    --modal-control-button-hover-background: #ffffff45;
-    --modal-close-button-hover-background: var(--tab-close-button-hover-background);
-    --modal-footer-background: #ffffff08;
-    --modal-footer-color: #ffffff7a;
+    --modal-control-button-hover-background: rgba(255, 255, 255, 0.2);
+    --modal-close-button-hover-background: #ff453a;
+    --modal-footer-background: rgba(255, 255, 255, 0.04);
+    --modal-footer-color: #636366;
 
-    --toast-background: #4d4d4dc2;
-    --toast-text-color: #e1e1e1;
-    --toast-close-button-background: #ffffff33;
+    /* Toasts */
+    --toast-background: rgba(58, 58, 60, 0.85);
+    --toast-text-color: #f5f5f7;
+    --toast-close-button-background: rgba(255, 255, 255, 0.15);
 
-    --quick-search-background: #ffffff12;
-    --quick-search-color: #ffffff52;
-    --quick-search-hover-background: #ffffff1f;
-    --quick-search-focus-border: #80808095;
-    --quick-search-focus-background: #ffffff1f;
-    --quick-search-focus-color: white;
-    --quick-search-result-content-background: #0000004d;
-    --quick-search-result-highlight-color: #a4d995;
+    /* Quick search */
+    --quick-search-background: #2c2c2e;
+    --quick-search-color: #636366;
+    --quick-search-hover-background: #3a3a3c;
+    --quick-search-focus-border: #0a84ff60;
+    --quick-search-focus-background: #3a3a3c;
+    --quick-search-focus-color: #f5f5f7;
+    --quick-search-result-content-background: #2c2c2e;
+    --quick-search-result-highlight-color: #30d158;
 
-    --left-pane-collapsed-border-color: #0009;
-    --left-pane-background-color: #1f1f1f;
-    --left-pane-text-color: #aaaaaa;
-    --left-pane-icon-color: #c5c5c5;
-    --left-pane-item-hover-background: #ffffff0d;
-    --left-pane-item-selected-background: #ffffff25;
-    --left-pane-item-selected-color: #dfdfdf;
-    --left-pane-item-selected-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-    --left-pane-item-action-button-background: #ffffff73;
-    --left-pane-item-action-button-color: black;
-    --left-pane-item-action-button-hover-background: #ffffffad;
-    --left-pane-item-action-button-hover-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);
-    --left-pane-item-selected-action-button-hover-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+    /* Left pane - Apple Notes dark sidebar */
+    --left-pane-collapsed-border-color: rgba(0, 0, 0, 0.4);
+    --left-pane-background-color: #1c1c1e;
+    --left-pane-text-color: #e5e5ea;
+    --left-pane-icon-color: #98989d;
+    --left-pane-item-hover-background: rgba(255, 255, 255, 0.05);
+    --left-pane-item-selected-background: rgba(10, 132, 255, 0.18);
+    --left-pane-item-selected-color: #f5f5f7;
+    --left-pane-item-selected-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --left-pane-item-action-button-background: rgba(255, 255, 255, 0.12);
+    --left-pane-item-action-button-color: #98989d;
+    --left-pane-item-action-button-hover-background: rgba(255, 255, 255, 0.2);
+    --left-pane-item-action-button-hover-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --left-pane-item-selected-action-button-hover-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 
-    /* Deprecated: now local variables in #launcher, with the values dependent on the current layout. */
+    /* Launcher pane */
     --launcher-pane-background-color: unset;
     --launcher-pane-text-color: unset;
 
-    --launcher-pane-vert-background-color: #1a1a1a;
-    --launcher-pane-vert-text-color: #909090;
-    --launcher-pane-vert-button-hover-color: #ffffff;
-    --launcher-pane-vert-button-hover-background: #ffffff1c;
-    --launcher-pane-vert-button-hover-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+    --launcher-pane-vert-background-color: #161618;
+    --launcher-pane-vert-text-color: #636366;
+    --launcher-pane-vert-button-hover-color: #f5f5f7;
+    --launcher-pane-vert-button-hover-background: rgba(255, 255, 255, 0.08);
+    --launcher-pane-vert-button-hover-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
     --launcher-pane-vert-button-focus-outline-color: var(--input-focus-outline-color);
-    --launcher-pane-vert-background-color-bgfx: #00000026; /* When background effects enabled */
+    --launcher-pane-vert-background-color-bgfx: rgba(0, 0, 0, 0.2);
 
-    --launcher-pane-horiz-border-color: rgb(22, 22, 22);
-    --launcher-pane-horiz-background-color: #282828;
-    --launcher-pane-horiz-text-color: #b8b8b8;
-    --launcher-pane-horiz-button-hover-color: #ffffff;
-    --launcher-pane-horiz-button-hover-background: #ffffff1c;
+    --launcher-pane-horiz-border-color: #2c2c2e;
+    --launcher-pane-horiz-background-color: #1c1c1e;
+    --launcher-pane-horiz-text-color: #98989d;
+    --launcher-pane-horiz-button-hover-color: #f5f5f7;
+    --launcher-pane-horiz-button-hover-background: rgba(255, 255, 255, 0.08);
     --launcher-pane-horiz-button-hover-shadow: unset;
     --launcher-pane-horiz-button-focus-outline-color: var(--input-focus-outline-color);
-    --launcher-pane-horiz-background-color-bgfx: #ffffff17; /* When background effects enabled */
-    --launcher-pane-horiz-border-color-bgfx: #00000080; /* When background effects enabled */
+    --launcher-pane-horiz-background-color-bgfx: rgba(28, 28, 30, 0.85);
+    --launcher-pane-horiz-border-color-bgfx: rgba(0, 0, 0, 0.3);
 
-    --global-menu-update-available-badge-background-color: #7dbe61;
-    --global-menu-update-available-badge-color: black;
+    --global-menu-update-available-badge-background-color: #30d158;
+    --global-menu-update-available-badge-color: white;
 
-    --protected-session-active-icon-color: #8edd8e;
-    --sync-status-error-pulse-color: #f47871;
+    --protected-session-active-icon-color: #30d158;
+    --sync-status-error-pulse-color: #ff453a;
 
-    --classic-toolbar-vert-layout-background-color: #ffffff0d;
+    --classic-toolbar-vert-layout-background-color: rgba(28, 28, 30, 0.6);
     --classic-toolbar-horiz-layout-background-color: var(--main-background-color);
 
-    --center-pane-vert-layout-background-color-bgfx: #0c0c0c69;
-    --center-pane-horiz-layout-background-color-bgfx: #1e1e1ec7;
+    --center-pane-vert-layout-background-color-bgfx: rgba(28, 28, 30, 0.65);
+    --center-pane-horiz-layout-background-color-bgfx: rgba(28, 28, 30, 0.85);
 
-    --right-pane-heading-color: gray;
+    --right-pane-heading-color: #636366;
 
     --root-background: var(--left-pane-background-color);
 
     --gutter-color: transparent;
-    --gutter-hover-color: #626262;
+    --gutter-hover-color: #48484a;
 
-    --tab-close-button-hover-background: #a45353;
+    /* Tabs */
+    --tab-close-button-hover-background: #ff453a;
     --tab-close-button-hover-color: white;
 
-    --active-tab-background-color: #ffffff1c;
+    --active-tab-background-color: rgba(255, 255, 255, 0.08);
     --active-tab-hover-background-color: var(--active-tab-background-color);
-    --active-tab-icon-color: #a9a9a9;
-    --active-tab-text-color: #ffffffcd;
-    --active-tab-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2), -1px -1px 3px rgba(0, 0, 0, 0.4);
-    --active-tab-dragging-shadow: var(--active-tab-shadow), 0 0 20px rgba(0, 0, 0, 0.4);
+    --active-tab-icon-color: #98989d;
+    --active-tab-text-color: #f5f5f7;
+    --active-tab-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --active-tab-dragging-shadow: var(--active-tab-shadow), 0 4px 12px rgba(0, 0, 0, 0.4);
 
     --inactive-tab-background-color: transparent;
-    --inactive-tab-hover-background-color: #ffffff0f;
-    --inactive-tab-text-color: #7c7c7c;
+    --inactive-tab-hover-background-color: rgba(255, 255, 255, 0.04);
+    --inactive-tab-text-color: #636366;
 
-    --alert-bar-background: #6b6b6b3b;
+    --alert-bar-background: rgba(107, 107, 107, 0.2);
 
-    --badge-background-color: #ffffff1a;
+    /* Badges */
+    --badge-background-color: rgba(255, 255, 255, 0.08);
     --badge-text-color: var(--muted-text-color);
 
-    --badge-temporaraily-editable-background-color: #297331;
-    --badge-read-only-background-color: #af4340;
-    --badge-share-background-color: #4d4d4d;
-    --badge-clipped-note-background-color: #295773;
-    --badge-execute-background-color: #604180;
-    --badge-active-content-background-color: rgb(12, 68, 70);
+    --badge-temporaraily-editable-background-color: #248a3d;
+    --badge-read-only-background-color: #d70015;
+    --badge-share-background-color: #636366;
+    --badge-clipped-note-background-color: #0a84ff;
+    --badge-execute-background-color: #bf5af2;
+    --badge-active-content-background-color: #64d2ff;
 
-    --note-icon-background-color: #444444;
-    --note-icon-color: #d4d4d4;
-    --note-icon-hover-background-color: #555555;
+    /* Note icon */
+    --note-icon-background-color: #48484a;
+    --note-icon-color: #e5e5ea;
+    --note-icon-hover-background-color: #636366;
 
-    --promoted-attribute-card-background-color: #ffffff21;
+    --promoted-attribute-card-background-color: rgba(255, 255, 255, 0.06);
     --promoted-attribute-card-shadow: none;
 
-    --floating-button-shadow-color: #00000080;
-    --floating-button-background-color: #494949d2;
-    --floating-button-color: var(--button-text-color);
-    --floating-button-hover-background: #ffffff20;
-    --floating-button-hover-color: white;
-    --floating-button-show-button-background: var(--left-pane-item-action-button-background);
-    --floating-button-show-button-color: var(--left-pane-item-action-button-color);
+    /* Floating buttons */
+    --floating-button-shadow-color: rgba(0, 0, 0, 0.4);
+    --floating-button-background-color: rgba(44, 44, 46, 0.9);
+    --floating-button-color: #98989d;
+    --floating-button-hover-background: rgba(255, 255, 255, 0.1);
+    --floating-button-hover-color: #f5f5f7;
+    --floating-button-show-button-background: rgba(255, 255, 255, 0.1);
+    --floating-button-show-button-color: #98989d;
     --floating-button-show-button-shadow: none;
-    --floating-button-show-button-hover-background: var(--left-pane-item-action-button-hover-background);
-    --floating-button-show-button-hover-shadow: 0 2px 4px #0000007b;
-    --floating-button-hide-button-background: #00000029;
-    --floating-button-hide-button-color: #ffffff63;
+    --floating-button-show-button-hover-background: rgba(255, 255, 255, 0.15);
+    --floating-button-show-button-hover-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    --floating-button-hide-button-background: rgba(0, 0, 0, 0.2);
+    --floating-button-hide-button-color: #636366;
+
+    --new-tab-button-background: transparent;
+    --new-tab-button-color: #636366;
+    --new-tab-button-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --new-tab-button-hover-background: rgba(255, 255, 255, 0.08);
+    --new-tab-button-hover-color: #f5f5f7;
 
     --right-pane-background-color: var(--main-background-color);
-    --right-pane-background-color-bgfx: #0c0c0c24; /* Only for the vertical layout */
-    --right-pane-item-hover-background: #ffffff26;
-    --right-pane-item-hover-color: white;
+    --right-pane-background-color-bgfx: rgba(28, 28, 30, 0.6);
+    --right-pane-item-hover-background: rgba(255, 255, 255, 0.08);
+    --right-pane-item-hover-color: #f5f5f7;
 
-    --bottom-panel-background-color: #11111180;
-    --bottom-panel-title-bar-background-color: #3F3F3F80;
+    --bottom-panel-background-color: rgba(28, 28, 30, 0.85);
+    --bottom-panel-title-bar-background-color: rgba(255, 255, 255, 0.05);
 
-    --status-bar-border-color: var(--main-border-color);
+    --status-bar-border-color: #38383a;
 
-    --scrollbar-thumb-color: #fdfdfd5c;
-    --scrollbar-thumb-hover-color: #ffffff7d;
+    /* Scrollbars */
+    --scrollbar-thumb-color: rgba(255, 255, 255, 0.15);
+    --scrollbar-thumb-hover-color: rgba(255, 255, 255, 0.3);
     --scrollbar-background-color: transparent;
-    --scrollbar-border-color: unset; /* Deprecated */
+    --scrollbar-border-color: unset;
 
-    --selection-background-color: #3399FF70;
+    --selection-background-color: #0a84ff50;
 
     --mermaid-theme: dark;
 
-    --code-block-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    --code-block-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 
-    --card-background-color: #ffffff12;
-    --card-background-hover-color: #ffffff20;
+    /* Cards */
+    --card-background-color: rgba(255, 255, 255, 0.06);
+    --card-background-hover-color: rgba(255, 255, 255, 0.1);
     --card-border-color: transparent;
     --card-box-shadow: none;
 
+    /* Calendar */
     --calendar-color: var(--menu-text-color);
     --calendar-weekday-labels-color: var(--muted-text-color);
     --calendar-day-hover-color: var(--hover-item-text-color);
-    --calendar-day-hover-background: var(--active-item-background-color);
-    --calendar-day-highlight-background: #8080805a;
+    --calendar-day-hover-background: rgba(10, 132, 255, 0.15);
+    --calendar-day-highlight-background: rgba(10, 132, 255, 0.08);
 
-    --timeline-bullet-color: gray;
-    --timeline-bullet-hover-color: white;
-    --timeline-connector-color: #464646;
-    --timeline-connector-active-color: #545454;
+    /* Timeline */
+    --timeline-bullet-color: #48484a;
+    --timeline-bullet-hover-color: #0a84ff;
+    --timeline-connector-color: #38383a;
+    --timeline-connector-active-color: #48484a;
     --timeline-connector-hover-blend-mode: exclusion;
 
-    --tooltip-background-color: rgba(67, 67, 67, 0.86);
-    --tooltip-foreground-color: #ffffffeb;
+    /* Tooltips */
+    --tooltip-background-color: rgba(58, 58, 60, 0.95);
+    --tooltip-foreground-color: #f5f5f7;
     --tooltip-shadow-color: rgba(0, 0, 0, 0.4);
 
-    --help-background-color: var(--menu-background-color);
-    --help-card-background: var(--card-background-color);
-    --help-card-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-    --help-card-heading-color: #959595;
-    --help-kbd-shortcut-color: white;
-    --help-kbd-shortcut-background: #676767;
-    --help-kbd-shortcut-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-    --help-code-color: inherit;
-    --help-code-background: #565656;
+    /* Help dialog */
+    --help-background-color: rgba(44, 44, 46, 0.95);
+    --help-card-background: rgba(255, 255, 255, 0.06);
+    --help-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --help-card-heading-color: #98989d;
+    --help-kbd-shortcut-color: #f5f5f7;
+    --help-kbd-shortcut-background: #48484a;
+    --help-kbd-shortcut-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    --help-code-color: #f5f5f7;
+    --help-code-background: #3a3a3c;
 
+    /* CKEditor */
     --ck-editor-popup-border-color: var(--modal-border-color);
-
-    --ck-editor-toolbar-button-on-background: #ffffff3b;
-    --ck-editor-toolbar-button-on-color: white;
-    --ck-editor-toolbar-button-on-shadow: 1px 1px 2px rgba(0, 0, 0, .75);
-    --ck-editor-toolbar-dropdown-button-open-background: #ffffff14;
+    --ck-editor-toolbar-button-on-background: rgba(10, 132, 255, 0.2);
+    --ck-editor-toolbar-button-on-color: #0a84ff;
+    --ck-editor-toolbar-button-on-shadow: none;
+    --ck-editor-toolbar-dropdown-button-open-background: rgba(255, 255, 255, 0.06);
 
     --note-list-view-icon-color: var(--left-pane-icon-color);
     --note-list-view-large-icon-background: var(--note-icon-background-color);
     --note-list-view-large-icon-color: var(--note-icon-color);
     --note-list-view-search-result-highlight-background: transparent;
     --note-list-view-search-result-highlight-color: var(--quick-search-result-highlight-color);
-    --note-list-view-content-background: rgba(0, 0, 0, .2);
+    --note-list-view-content-background: rgba(0, 0, 0, 0.2);
     --note-list-view-content-search-result-highlight-background: var(--quick-search-result-highlight-color);
-    --note-list-view-content-search-result-highlight-color: black;
+    --note-list-view-content-search-result-highlight-color: white;
 
     --calendar-coll-event-background-saturation: 25%;
-    --calendar-coll-event-background-lightness: 20%;
-    --calendar-coll-event-background-color: #3c3c3c;
-    --calendar-coll-event-text-color: white;
-    --calendar-coll-event-hover-filter: brightness(1.25);
-    --callendar-coll-event-archived-sripe-color: #00000026;
-    --calendar-coll-today-background-color: #ffffff08;
+    --calendar-coll-event-background-lightness: 18%;
+    --calendar-coll-event-background-color: #2c2c2e;
+    --calendar-coll-event-text-color: #f5f5f7;
+    --calendar-coll-event-hover-filter: brightness(1.2);
+    --callendar-coll-event-archived-sripe-color: rgba(0, 0, 0, 0.15);
+    --calendar-coll-today-background-color: rgba(10, 132, 255, 0.06);
 }
 
 /*
@@ -317,11 +334,7 @@
 .nested-note-list-item.use-note-color,
 .note-book-card .note-book-header.use-note-color {
     --custom-color: var(--dark-theme-custom-color);
-
-    /* The background color of the active item in the note tree.
-     * The --custom-color-hue variable contains the hue of the user-selected note color.
-     * This value is unset for gray tones. */
-    --custom-bg-color: hsl(var(--custom-color-hue), 20%, 33%, 0.4);
+    --custom-bg-color: hsl(var(--custom-color-hue), 20%, 25%, 0.4);
 }
 
 :root .reference-link.use-note-color,
@@ -344,21 +357,20 @@ body .todo-list input[type="checkbox"]:not(:checked):before {
 }
 
 .quick-edit-dialog-wrapper.with-hue {
-    --modal-background-color: hsl(var(--custom-color-hue), 8.8%, 11.2%);
-    --modal-border-color: hsl(var(--custom-color-hue), 9.4%, 25.1%);
-    --promoted-attribute-card-background-color: hsl(var(--custom-color-hue), 13.2%, 20.8%);
+    --modal-background-color: hsl(var(--custom-color-hue), 8%, 14%);
+    --modal-border-color: hsl(var(--custom-color-hue), 8%, 28%);
+    --promoted-attribute-card-background-color: hsl(var(--custom-color-hue), 10%, 20%);
 }
 
 .modal.tab-bar-modal .tabs .tab-card.with-hue {
-    background-color: hsl(var(--bg-hue), 8.8%, 11.2%);
-    border-color: hsl(var(--bg-hue), 9.4%, 25.1%);
+    background-color: hsl(var(--bg-hue), 8%, 14%);
+    border-color: hsl(var(--bg-hue), 8%, 28%);
 }
 
 .modal.tab-bar-modal .tabs .tab-card.active.with-hue {
-    background-color: hsl(var(--bg-hue), 8.8%, 16.2%);
-    border-color: hsl(var(--bg-hue), 9.4%, 25.1%);
+    background-color: hsl(var(--bg-hue), 8%, 18%);
+    border-color: hsl(var(--bg-hue), 8%, 28%);
 }
-
 
 .use-note-color {
     --custom-color: var(--dark-theme-custom-color);
@@ -368,17 +380,17 @@ body .todo-list input[type="checkbox"]:not(:checked):before {
 .quick-edit-dialog-wrapper.with-hue,
 .nested-note-list-item.with-hue,
 .note-book-card.with-hue .note-book-header {
-    --note-icon-custom-background-color: hsl(var(--custom-color-hue), 15.8%, 30.9%);
-    --note-icon-custom-color: hsl(var(--custom-color-hue), 100%, 76.5%);
-    --note-icon-hover-custom-background-color: hsl(var(--custom-color-hue), 28.3%, 36.7%);
+    --note-icon-custom-background-color: hsl(var(--custom-color-hue), 15%, 30%);
+    --note-icon-custom-color: hsl(var(--custom-color-hue), 80%, 80%);
+    --note-icon-hover-custom-background-color: hsl(var(--custom-color-hue), 20%, 36%);
 }
 
 .note-split.with-hue *::selection,
 .quick-edit-dialog-wrapper.with-hue *::selection {
-    --selection-background-color: hsl(var(--custom-color-hue), 49.2%, 35%);
+    --selection-background-color: hsl(var(--custom-color-hue), 40%, 30%);
 }
 
 .note-book-card.with-hue {
-    --card-background-color: hsl(var(--custom-color-hue), 6%, 21%);
-    --card-background-hover-color: hsl(var(--custom-color-hue), 8%, 25%);
+    --card-background-color: hsl(var(--custom-color-hue), 6%, 18%);
+    --card-background-hover-color: hsl(var(--custom-color-hue), 8%, 22%);
 }

@@ -10,13 +10,17 @@ button.ck.ck-button:is(.ck-button-action, .ck-button-save, .ck-button-cancel, .c
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 120px;
-    box-shadow: 1px 1px 1px var(--cmd-button-shadow-color);
+    min-width: 100px;
+    box-shadow: none;
     border: unset;
-    border-radius: 6px;
-    padding: 4px 16px;
+    border-radius: 8px;
+    padding: 5px 16px;
     background: var(--cmd-button-background-color);
     color: var(--cmd-button-text-color);
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: -0.01em;
+    transition: background-color 150ms ease, transform 100ms ease;
 
     &.dropdown-toggle-split {
         min-width: unset;

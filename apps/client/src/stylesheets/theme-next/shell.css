@@ -8,8 +8,9 @@
 }
 
 :root {
-    --dropdown-backdrop-filter: blur(20px) saturate(6);
-    --dropdown-border-radius: 10px;
+    /* Apple-style frosted glass effect */
+    --dropdown-backdrop-filter: blur(24px) saturate(1.8);
+    --dropdown-border-radius: 12px;
 }
 
 #root-widget {
@@ -29,7 +30,7 @@ body.layout-horizontal {
     --active-tab-background-color: var(--launcher-pane-horiz-background-color);
     --active-tab-hover-background-color: var(--active-tab-background-color);
     --new-tab-button-background: transparent;
-    --tab-bar-height: 44px;
+    --tab-bar-height: 40px;
     --native-titlebar-darwin-x-offset: 12;
     --native-titlebar-darwin-y-offset: 14 !important;
 }

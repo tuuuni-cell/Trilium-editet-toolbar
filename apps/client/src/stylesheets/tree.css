@@ -1,3 +1,8 @@
+/*
+ * Tree Navigation - Apple Notes-Inspired Minimal Design
+ * Clean, spacious tree with subtle hover effects and rounded selection
+ */
+
 ul.fancytree-container {
     padding-inline-start: 0;
 }
@@ -11,12 +16,14 @@ span.fancytree-node.fancytree-hide {
 }
 
 .fancytree-title {
-    flex-basis: 0; /* to allow shrinking text to make space for buttons */
+    flex-basis: 0;
     flex-shrink: 1;
     flex-grow: 1;
     overflow: hidden;
-    margin-inline-start: 7px;
+    margin-inline-start: 6px;
     outline: none;
+    font-weight: 400;
+    letter-spacing: -0.01em;
 }
 
 .fancytree-expander {
@@ -30,10 +37,10 @@ span.fancytree-node.fancytree-hide {
 .fancytree-node {
     display: flex;
     align-items: center;
-    height: 38px;
-    padding: 4px;
+    height: 34px;
+    padding: 3px 8px;
     border: 1px solid transparent;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     overflow: hidden;
     white-space: nowrap;
@@ -41,6 +48,7 @@ span.fancytree-node.fancytree-hide {
     user-select: none !important;
     -webkit-user-select: none !important;
     color: var(--custom-color, inherit);
+    transition: background-color 150ms ease, border-color 150ms ease;
 }
 
 .fancytree-node:not(.fancytree-loading) .fancytree-expander {
@@ -51,18 +59,20 @@ span.fancytree-node.fancytree-hide {
 
 .fancytree-node:not(.fancytree-loading) .fancytree-expander:before {
     font-family: "boxicons" !important;
-    content: "\ea50"; /* lookup code for "chevron-right" in boxicons.css */
+    content: "\ea50";
     speak: none;
-    font-size: x-large;
+    font-size: large;
     text-transform: none;
     line-height: 1;
     position: relative;
-    top: 2px;
-    margin-inline-end: 5px;
+    top: 1px;
+    margin-inline-end: 3px;
+    opacity: 0.5;
+    transition: opacity 150ms ease, transform 200ms ease;
 }
 
 body[dir=rtl] .fancytree-node:not(.fancytree-loading):not(.fancytree-expanded) .fancytree-expander:before {
-    content: "\ea4d";   /* bx bx-chevron-left */
+    content: "\ea4d";
 }
 
 .fancytree-loading span.fancytree-expander {
@@ -89,29 +99,30 @@ body[dir=rtl] .fancytree-node:not(.fancytree-loading):not(.fancytree-expanded) .
 }
 
 @keyframes lds-dual-ring {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 ul.fancytree-container li {
     contain: layout paint;
 }
 
-/* this is done to preserve correct indentation. Better solution would be preferable */
+/* Invisible expander for non-folders to preserve indentation */
 .fancytree-node:not(.fancytree-folder) .fancytree-expander:before {
-    color: var(--main-background-color); /* setting to background color makes this invisible */
+    color: var(--main-background-color);
 }
 
 .fancytree-node.fancytree-expanded .fancytree-expander:before {
     font-family: "boxicons" !important;
-    content: "\ea4a"; /* lookup code for "chevron-down" in boxicons.css */
+    content: "\ea4a";
 }
 
-/** some common text styling for cssClass label */
+/* Node hover - show expander more prominently */
+.fancytree-node:hover .fancytree-expander:before {
+    opacity: 0.8;
+}
+
+/* Text styling for cssClass labels */
 span.fancytree-node.underline .fancytree-title {
     text-decoration: underline;
 }
@@ -119,18 +130,17 @@ span.fancytree-node.dotted .fancytree-title {
     text-decoration: dotted;
 }
 span.fancytree-node.bold .fancytree-title {
-    font-weight: bold;
+    font-weight: 600;
 }
 span.fancytree-node.muted {
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
-/** following will hide ancestors of hoisted (filtered) note */
+/* Hide ancestors of hoisted note */
 .fancytree-submatch:not(.fancytree-match) {
     display: none !important;
 }
 
-/** resets indent of hoisted note */
 .fancytree-submatch:not(.fancytree-match) + ul {
     padding: 0 !important;
 }
@@ -140,87 +150,93 @@ ul.fancytree-container {
     background-color: inherit;
 }
 
-
 .fancytree-custom-icon {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 1em;
     height: 1em;
-    font-size: 1.2em;
+    font-size: 1.1em;
+    opacity: 0.7;
 }
 
-/* Fallback icon */
 :where(.fancytree-custom-icon)::before {
     content: "?";
 }
 
 /* Protected note icon badge */
 span.fancytree-node.protected > span.fancytree-custom-icon {
-    filter: drop-shadow(2px 2px 2px var(--main-text-color));
+    filter: drop-shadow(1px 1px 2px var(--main-text-color));
 }
 
-/* Note indicator icons (clone, shared) - real DOM elements for tooltip support */
+/* Note indicator icons */
 .note-indicator-icon {
     font-family: "boxicons" !important;
     font-size: smaller;
     margin-inline-start: 4px;
-    opacity: 0.8;
+    opacity: 0.5;
     cursor: help;
 }
 
 .note-indicator-icon.clone-indicator::before {
-    content: "\eb3d"; /* bx-link-alt */
+    content: "\eb3d";
 }
 
 .note-indicator-icon.shared-indicator::before {
-    content: "\ec03"; /* bx-share-alt */
+    content: "\ec03";
 }
 
 body.experimental-feature-new-layout .note-indicator-icon.clone-indicator::before {
     content: "\ed82";
-    opacity: 0.5;
+    opacity: 0.4;
 }
 
 span.fancytree-node.fancytree-active-clone:not(.fancytree-active) .fancytree-title {
-    font-weight: bold;
+    font-weight: 500;
 }
 
-/* first nesting level has lower left padding to avoid extra left padding. Other levels are not affected */
+/* Indentation */
 .ui-fancytree > li > ul {
-    padding-inline-start: 5px;
+    padding-inline-start: 4px;
 }
 
 .ui-fancytree ul {
-    padding-inline-start: 20px;
+    padding-inline-start: 16px;
 }
 
+/* Active/selected node - Apple-style highlight */
 span.fancytree-active {
     color: var(--active-item-text-color);
     background-color: var(--active-item-background-color);
-    border-color: transparent; /* invisible border */
-    border-radius: 5px;
+    border-color: transparent;
+    border-radius: 8px;
 }
 
 span.fancytree-active .fancytree-title {
-    font-weight: bold;
+    font-weight: 600;
     border: 0;
+}
+
+span.fancytree-active .fancytree-custom-icon {
+    opacity: 0.9;
 }
 
 span.fancytree-node.fancytree-selected {
     background-color: var(--selection-background-color);
-    border-radius: 0;
+    border-radius: 8px;
 }
 
 span.fancytree-selected .fancytree-custom-icon::before {
     font-family: "boxicons";
     content: "\ef05";
     border: 1px solid var(--main-text-color);
-    border-radius: 3px;
+    border-radius: 4px;
 }
 
+/* Subtle hover - Apple-style */
 span.fancytree-node:hover {
-    border: 1px solid var(--main-border-color);
+    border: 1px solid transparent;
+    background-color: var(--hover-item-background-color);
 }
 
 span.fancytree-node.fancytree-menu-target {
@@ -233,30 +249,34 @@ span.fancytree-node:hover .fancytree-title {
 }
 
 span.fancytree-node.archived {
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
+/* Tree item action buttons */
 .fancytree-node:hover .tn-icon.tree-item-button {
     display: inline-block;
 }
 
 .tn-icon.tree-item-button {
     display: none;
-    font-size: 120%;
+    font-size: 110%;
     cursor: pointer;
-    margin-inline-start: 8px;
+    margin-inline-start: 6px;
     padding: 1px;
     border: 1px solid transparent;
-    border-radius: 5px;
+    border-radius: 6px;
+    opacity: 0.6;
+    transition: opacity 150ms ease;
 }
 
 .unhoist-button.tn-icon.tree-item-button {
-    margin-inline-start: 0; /* unhoist button is on the left and doesn't need more margin */
-    display: block; /* keep always visible */
+    margin-inline-start: 0;
+    display: block;
 }
 
 .tree-item-button:hover {
-    border: 1px dotted var(--main-text-color);
+    border: 1px solid transparent;
+    opacity: 1;
 }
 
 .add-note-button {
@@ -267,6 +287,7 @@ span.fancytree-node:hover .add-note-button {
     display: inline-block;
 }
 
+/* Drag and drop */
 .fancytree-drop-accept {
     border: 1px solid var(--main-border-color);
 }
@@ -274,16 +295,14 @@ span.fancytree-node:hover .add-note-button {
 #fancytree-drop-marker.fancytree-drop-after,
 #fancytree-drop-marker.fancytree-drop-before {
     width: 100px;
-    /* marker is by default position: relative which doesn't make sense */
     position: absolute !important;
-    /* heaving a height helps with positioning since the algorithm calculating "top" takes it into account */
     height: 19px;
 }
 
 #fancytree-drop-marker.fancytree-drop-after {
-    border-bottom: 1px solid var(--muted-text-color);
+    border-bottom: 2px solid var(--link-color);
 }
 
 #fancytree-drop-marker.fancytree-drop-before {
-    border-top: 1px solid var(--muted-text-color);
+    border-top: 2px solid var(--link-color);
 }
