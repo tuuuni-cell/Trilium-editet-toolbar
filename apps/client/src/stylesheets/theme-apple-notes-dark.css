@@ -1,0 +1,632 @@
+/**
+ * Apple Notes Dark Theme for Trilium Notes
+ *
+ * Dark mode variant of the Apple Notes theme.
+ * Uses macOS Dark mode colors with Apple Notes yellow accent.
+ */
+
+@import url(./theme-next/base.css);
+
+:root {
+    --theme-style: dark;
+
+    /* --- Backgrounds (macOS Dark System Colors) --- */
+    --main-background-color: #1C1C1E;
+    --accented-background-color: #2C2C2E;
+    --more-accented-background-color: #3A3A3C;
+    --root-background: #111110;
+
+    /* --- Text --- */
+    --main-text-color: #F2F2F7;
+    --muted-text-color: #8E8E93;
+    --link-color: #64D2FF;
+    --link-hover-color: #32ADE6;
+    --link-hover-background: transparent;
+    --link-selection-outline-color: rgba(100, 210, 255, 0.35);
+
+    /* --- Borders --- */
+    --main-border-color: rgba(255, 255, 255, 0.08);
+    --subtle-border-color: rgba(255, 255, 255, 0.06);
+    --dropdown-border-color: rgba(255, 255, 255, 0.12);
+    --dropdown-shadow-opacity: 0.4;
+
+    /* --- Apple Notes Yellow Accent --- */
+    --apple-accent: #FFCC02;
+    --apple-accent-hover: #FFD740;
+    --apple-accent-dark: #CC9900;
+
+    /* --- Left Pane (Note Tree Sidebar) --- */
+    --left-pane-background-color: #242422;
+    --left-pane-text-color: #F2F2F7;
+    --left-pane-icon-color: #8E8E93;
+    --left-pane-collapsed-border-color: rgba(255, 255, 255, 0.08);
+
+    /* Tree item states */
+    --left-pane-item-hover-background: rgba(255, 255, 255, 0.06);
+    --left-pane-item-selected-background: #FFCC02;
+    --left-pane-item-selected-color: #1C1C1E;
+    --left-pane-item-selected-shadow: none;
+    --left-pane-item-action-button-background: rgba(255, 255, 255, 0.1);
+    --left-pane-item-action-button-color: #8E8E93;
+    --left-pane-item-action-button-hover-background: rgba(255, 255, 255, 0.18);
+    --left-pane-item-action-button-hover-shadow: none;
+    --left-pane-item-selected-action-button-hover-shadow: none;
+
+    /* Active/hover item */
+    --hover-item-text-color: #F2F2F7;
+    --hover-item-background-color: rgba(255, 255, 255, 0.06);
+    --hover-item-border-color: transparent;
+    --active-item-text-color: #1C1C1E;
+    --active-item-background-color: #FFCC02;
+    --active-item-border-color: transparent;
+
+    /* --- Launcher Pane --- */
+    --launcher-pane-background-color: unset;
+    --launcher-pane-text-color: unset;
+    --launcher-pane-vert-size: 46px;
+    --launcher-pane-horiz-size: 46px;
+    --launcher-pane-vert-icon-size: 130%;
+    --launcher-pane-vert-button-margin: 5px;
+    --launcher-pane-vert-button-gap: 2px;
+
+    --launcher-pane-vert-background-color: #1A1A18;
+    --launcher-pane-vert-text-color: #8E8E93;
+    --launcher-pane-vert-button-hover-color: #F2F2F7;
+    --launcher-pane-vert-button-hover-background: rgba(255, 204, 2, 0.2);
+    --launcher-pane-vert-button-hover-shadow: none;
+    --launcher-pane-vert-button-focus-outline-color: #FFCC02;
+
+    --launcher-pane-horiz-background-color: #242422;
+    --launcher-pane-horiz-text-color: #8E8E93;
+    --launcher-pane-horiz-button-hover-color: #F2F2F7;
+    --launcher-pane-horiz-button-hover-background: rgba(255, 204, 2, 0.2);
+    --launcher-pane-horiz-button-hover-shadow: none;
+    --launcher-pane-horiz-button-focus-outline-color: #FFCC02;
+    --launcher-pane-horiz-border-color: rgba(255, 255, 255, 0.08);
+
+    /* --- Tabs --- */
+    --tab-bar-height: 42px;
+    --tab-height: 30px;
+    --active-tab-background-color: #1C1C1E;
+    --active-tab-hover-background-color: #1C1C1E;
+    --active-tab-text-color: #F2F2F7;
+    --active-tab-icon-color: #8E8E93;
+    --active-tab-shadow: 0 -1px 0 rgba(255, 204, 2, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+    --active-tab-dragging-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    --inactive-tab-background-color: transparent;
+    --inactive-tab-hover-background-color: rgba(255, 255, 255, 0.05);
+    --inactive-tab-text-color: #636366;
+    --tab-close-button-hover-background: rgba(255, 255, 255, 0.15);
+    --tab-close-button-hover-color: #F2F2F7;
+    --new-tab-button-background: rgba(255, 255, 255, 0.08);
+    --new-tab-button-color: #8E8E93;
+    --new-tab-button-shadow: none;
+    --new-tab-button-hover-background: rgba(255, 255, 255, 0.14);
+    --new-tab-button-hover-color: #F2F2F7;
+
+    /* --- Inputs --- */
+    --input-background-color: rgba(255, 255, 255, 0.08);
+    --input-text-color: #F2F2F7;
+    --input-placeholder-color: rgba(235, 235, 245, 0.35);
+    --input-selection-background: #FFCC02;
+    --input-selection-text-color: #1C1C1E;
+    --input-hover-background: rgba(255, 255, 255, 0.12);
+    --input-hover-color: #F2F2F7;
+    --input-focus-outline-color: #FFCC02;
+    --input-focus-background: rgba(255, 255, 255, 0.12);
+    --input-focus-color: #F2F2F7;
+    --input-action-button-color: #8E8E93;
+    --input-action-button-hover: #F2F2F7;
+    --radio-checkbox-background: rgba(255, 255, 255, 0.15);
+    --radio-checkbox-hover-background: rgba(255, 255, 255, 0.22);
+    --radio-checkbox-indicator-color: #F2F2F7;
+
+    /* --- Buttons --- */
+    --button-background-color: transparent;
+    --button-border-color: rgba(255, 255, 255, 0.12);
+    --button-text-color: #F2F2F7;
+    --button-border-radius: 8px;
+    --button-disabled-background-color: rgba(255, 255, 255, 0.07);
+    --button-disabled-text-color: rgba(235, 235, 245, 0.35);
+    --primary-button-background-color: #FFCC02;
+    --primary-button-text-color: #1C1C1E;
+    --primary-button-border-color: #FFCC02;
+    --cmd-button-background-color: rgba(255, 255, 255, 0.08);
+    --cmd-button-text-color: #F2F2F7;
+    --cmd-button-hover-background-color: rgba(255, 255, 255, 0.14);
+    --cmd-button-hover-text-color: #F2F2F7;
+    --cmd-button-shadow-color: transparent;
+    --cmd-button-icon-color: #8E8E93;
+    --cmd-button-keyboard-shortcut-background: rgba(255, 255, 255, 0.1);
+    --cmd-button-keyboard-shortcut-color: #8E8E93;
+    --cmd-button-disabled-opacity: 0.4;
+    --button-group-active-button-background: rgba(255, 204, 2, 0.3);
+    --button-group-active-button-text-color: #F2F2F7;
+    --icon-button-color: #8E8E93;
+    --icon-button-hover-background: rgba(255, 255, 255, 0.1);
+    --icon-button-hover-color: #F2F2F7;
+
+    /* --- Dropdown / Menus --- */
+    --menu-text-color: #F2F2F7;
+    --menu-background-color: rgba(38, 38, 40, 0.95);
+    --menu-background-color-no-backdrop: #282828;
+    --menu-item-icon-color: #8E8E93;
+    --menu-item-disabled-opacity: 0.4;
+    --menu-item-keyboard-shortcut-color: rgba(235, 235, 245, 0.4);
+    --menu-item-arrow-color: rgba(235, 235, 245, 0.4);
+    --menu-item-delimiter-color: rgba(255, 255, 255, 0.08);
+    --menu-item-group-header-color: rgba(235, 235, 245, 0.4);
+    --menu-section-background-color: rgba(255, 255, 255, 0.04);
+    --dropdown-item-icon-destructive-color: #FF453A;
+    --dropdown-backdrop-filter: blur(20px) saturate(8);
+    --dropdown-border-radius: 12px;
+    --menu-padding-size: 6px;
+
+    /* --- Modals --- */
+    --modal-background-color: #2C2C2E;
+    --modal-backdrop-color: rgba(0, 0, 0, 0.6);
+    --modal-shadow-color: rgba(0, 0, 0, 0.5);
+    --modal-border-color: rgba(255, 255, 255, 0.12);
+    --modal-title-color: #8E8E93;
+    --modal-control-button-background: rgba(255, 255, 255, 0.1);
+    --modal-control-button-color: #8E8E93;
+    --modal-control-button-hover-color: #F2F2F7;
+    --modal-control-button-hover-background: rgba(255, 255, 255, 0.18);
+    --modal-close-button-hover-background: #FF453A;
+    --modal-footer-background: rgba(255, 255, 255, 0.04);
+    --modal-footer-color: rgba(235, 235, 245, 0.4);
+
+    /* --- Toasts --- */
+    --toast-background: rgba(28, 28, 30, 0.92);
+    --toast-text-color: #F2F2F7;
+    --toast-close-button-background: rgba(255, 255, 255, 0.15);
+
+    /* --- Quick Search --- */
+    --quick-search-background: rgba(255, 255, 255, 0.08);
+    --quick-search-color: rgba(235, 235, 245, 0.4);
+    --quick-search-hover-background: rgba(255, 255, 255, 0.12);
+    --quick-search-focus-border: rgba(255, 204, 2, 0.5);
+    --quick-search-focus-background: rgba(255, 255, 255, 0.12);
+    --quick-search-focus-color: #F2F2F7;
+    --quick-search-result-content-background: rgba(255, 255, 255, 0.06);
+    --quick-search-result-highlight-color: #FFCC02;
+
+    /* --- Scrollbars --- */
+    --scrollbar-thumb-color: rgba(255, 255, 255, 0.18);
+    --scrollbar-thumb-hover-color: rgba(255, 255, 255, 0.28);
+    --scrollbar-background-color: transparent;
+    --selection-background-color: rgba(255, 204, 2, 0.35);
+
+    /* --- Right Pane --- */
+    --right-pane-background-color: #242422;
+    --right-pane-item-hover-background: rgba(255, 255, 255, 0.06);
+    --right-pane-item-hover-color: inherit;
+    --right-pane-heading-color: #636366;
+
+    /* --- Status Bar --- */
+    --status-bar-border-color: rgba(255, 255, 255, 0.1);
+    --bottom-panel-background-color: rgba(36, 36, 34, 0.95);
+    --bottom-panel-title-bar-background-color: rgba(255, 255, 255, 0.04);
+
+    /* --- Gutter --- */
+    --gutter-color: transparent;
+    --gutter-hover-color: rgba(255, 204, 2, 0.3);
+
+    /* --- Center Pane --- */
+    --center-pane-border-radius: 0;
+
+    /* --- Classic toolbar --- */
+    --classic-toolbar-vert-layout-background-color: rgba(28, 28, 30, 0.9);
+    --classic-toolbar-horiz-layout-background-color: #1C1C1E;
+
+    /* --- Typography --- */
+    --main-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    --tree-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    --detail-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    --monospace-font-family: "SF Mono", "JetBrains Mono", Consolas, "Courier New", monospace;
+    --main-font-size: 14px;
+
+    /* --- Floating Buttons --- */
+    --floating-button-background-color: rgba(44, 44, 46, 0.95);
+    --floating-button-color: #8E8E93;
+    --floating-button-shadow-color: rgba(0, 0, 0, 0.4);
+    --floating-button-hover-background: rgba(255, 204, 2, 0.2);
+    --floating-button-hover-color: #F2F2F7;
+    --floating-button-show-button-background: rgba(255, 255, 255, 0.1);
+    --floating-button-show-button-color: #8E8E93;
+    --floating-button-show-button-shadow: none;
+    --floating-button-show-button-hover-background: rgba(255, 255, 255, 0.18);
+    --floating-button-show-button-hover-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    --floating-button-hide-button-background: rgba(255, 255, 255, 0.06);
+    --floating-button-hide-button-color: #636366;
+
+    /* --- Note icons --- */
+    --note-icon-background-color: #3A3A3C;
+    --note-icon-color: #8E8E93;
+    --note-icon-hover-background-color: #48484A;
+
+    /* --- Badges --- */
+    --badge-background-color: rgba(255, 255, 255, 0.1);
+    --badge-text-color: #8E8E93;
+    --badge-temporaraily-editable-background-color: #30D158;
+    --badge-read-only-background-color: #FF453A;
+    --badge-share-background-color: #636366;
+    --badge-clipped-note-background-color: #0A84FF;
+    --badge-execute-background-color: #BF5AF2;
+    --badge-active-content-background-color: #32ADE6;
+
+    /* --- Promoted attributes --- */
+    --promoted-attribute-card-background-color: rgba(255, 255, 255, 0.06);
+    --promoted-attribute-card-shadow: none;
+
+    /* --- Alerts --- */
+    --alert-bar-background: rgba(255, 204, 2, 0.1);
+
+    /* --- CKEditor --- */
+    --ck-editor-popup-border-color: var(--dropdown-border-color);
+    --ck-editor-toolbar-button-on-background: rgba(255, 204, 2, 0.25);
+    --ck-editor-toolbar-button-on-color: #F2F2F7;
+    --ck-editor-toolbar-button-on-shadow: none;
+    --ck-editor-toolbar-dropdown-button-open-background: rgba(255, 255, 255, 0.08);
+
+    /* --- Cards --- */
+    --card-background-color: rgba(255, 255, 255, 0.05);
+    --card-background-hover-color: rgba(255, 255, 255, 0.09);
+    --card-border-color: transparent;
+    --card-shadow-color: rgba(0, 0, 0, 0.3);
+    --card-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+
+    /* --- Note list view --- */
+    --note-list-view-icon-color: #8E8E93;
+    --note-list-view-large-icon-background: #3A3A3C;
+    --note-list-view-large-icon-color: #8E8E93;
+    --note-list-view-search-result-highlight-background: transparent;
+    --note-list-view-search-result-highlight-color: #FFCC02;
+    --note-list-view-content-background: rgba(255, 255, 255, 0.06);
+    --note-list-view-content-search-result-highlight-background: #FFCC02;
+    --note-list-view-content-search-result-highlight-color: #1C1C1E;
+
+    /* --- Tooltips --- */
+    --tooltip-background-color: rgba(44, 44, 46, 0.95);
+    --tooltip-foreground-color: rgba(242, 242, 247, 0.9);
+    --tooltip-shadow-color: rgba(0, 0, 0, 0.4);
+
+    /* --- Help --- */
+    --help-background-color: rgba(44, 44, 46, 0.95);
+    --help-card-background: rgba(255, 255, 255, 0.06);
+    --help-card-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    --help-card-heading-color: #636366;
+    --help-kbd-shortcut-color: #F2F2F7;
+    --help-kbd-shortcut-background: #3A3A3C;
+    --help-kbd-shortcut-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    --help-code-color: #F2F2F7;
+    --help-code-background: rgba(255, 255, 255, 0.1);
+
+    /* --- Misc --- */
+    --mermaid-theme: dark;
+    --code-block-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --contextual-help-icon-color: #64D2FF;
+    --global-menu-update-available-badge-background-color: #30D158;
+    --global-menu-update-available-badge-color: #1C1C1E;
+    --protected-session-active-icon-color: #30D158;
+    --sync-status-error-pulse-color: #FF453A;
+    --select-arrow-svg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='transparent' stroke='%238E8E93' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>");
+    --select-group-heading-text-color: #636366;
+    --select-focus-background: #2C2C2E;
+    --select-focus-text-color: #F2F2F7;
+    --select-dropdown-text-color: #F2F2F7;
+
+    /* Calendar */
+    --calendar-color: #F2F2F7;
+    --calendar-weekday-labels-color: #8E8E93;
+    --calendar-day-hover-color: #1C1C1E;
+    --calendar-day-hover-background: rgba(255, 204, 2, 0.3);
+    --calendar-day-highlight-background: rgba(255, 255, 255, 0.06);
+
+    /* Timeline */
+    --timeline-bullet-color: #48484A;
+    --timeline-bullet-hover-color: #FFCC02;
+    --timeline-connector-color: #3A3A3C;
+    --timeline-connector-active-color: #48484A;
+    --timeline-connector-hover-blend-mode: screen;
+}
+
+
+/* ============================================================
+   DARK MODE SPECIFIC OVERRIDES
+   ============================================================ */
+
+body#trilium-app {
+    background-color: var(--root-background);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Left pane */
+#left-pane {
+    background-color: var(--left-pane-background-color) !important;
+    border-inline-end: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Launcher */
+#launcher-pane.vertical {
+    background-color: var(--launcher-pane-vert-background-color) !important;
+    border-inline-end: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Tab row */
+.tab-row-container {
+    background-color: #242422 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Note split */
+.note-split {
+    background-color: #1C1C1E !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+/* Title row */
+.title-row {
+    background-color: #1C1C1E !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    padding: 20px 32px 8px !important;
+}
+
+/* Note title */
+.note-title-widget input.note-title,
+.note-title {
+    color: #F2F2F7 !important;
+    font-size: 24px !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.3px !important;
+    background: transparent !important;
+    border: none !important;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif !important;
+}
+
+/* Ribbon */
+.ribbon-container .ribbon-top-row {
+    background-color: #242422 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.ribbon-body {
+    background-color: #242422 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Right pane */
+#right-pane {
+    background-color: #242422 !important;
+    border-inline-start: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Ribbon tabs */
+.ribbon-tab-title {
+    color: #636366 !important;
+}
+
+.ribbon-tab-title:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    color: #F2F2F7 !important;
+}
+
+.ribbon-tab-title.active {
+    background-color: rgba(255, 204, 2, 0.2) !important;
+    color: #F2F2F7 !important;
+}
+
+/* CKEditor dark overrides */
+.ck.ck-button {
+    color: #8E8E93 !important;
+}
+
+.ck.ck-button:hover:not(.ck-disabled) {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #F2F2F7 !important;
+}
+
+.ck.ck-button.ck-on {
+    background: rgba(255, 204, 2, 0.25) !important;
+    color: #F2F2F7 !important;
+}
+
+/* Dropdowns dark */
+.dropdown-menu {
+    background-color: rgba(44, 44, 46, 0.96) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4) !important;
+}
+
+.dropdown-item {
+    color: #F2F2F7 !important;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: #FFCC02 !important;
+    color: #1C1C1E !important;
+}
+
+/* Modal dark */
+.modal-content {
+    background-color: #2C2C2E !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.modal-header {
+    background-color: #3A3A3C !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.modal-title {
+    color: #F2F2F7 !important;
+}
+
+.modal-footer {
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Buttons dark */
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-color: transparent !important;
+    color: #F2F2F7 !important;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.16) !important;
+    color: #F2F2F7 !important;
+}
+
+/* Form controls dark */
+.form-control {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    color: #F2F2F7 !important;
+}
+
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    border-color: rgba(255, 204, 2, 0.6) !important;
+    box-shadow: 0 0 0 3px rgba(255, 204, 2, 0.15) !important;
+    color: #F2F2F7 !important;
+}
+
+/* Tree items dark */
+.fancytree-node {
+    height: 34px !important;
+    padding: 2px 8px !important;
+    border-radius: 8px !important;
+    margin: 1px 6px !important;
+    font-size: 13.5px !important;
+    border: none !important;
+    color: #F2F2F7 !important;
+}
+
+.fancytree-node:hover:not(.fancytree-active):not(.fancytree-selected) {
+    background-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+.fancytree-node.fancytree-active,
+.fancytree-node.fancytree-selected {
+    background-color: #FFCC02 !important;
+    color: #1C1C1E !important;
+    font-weight: 500 !important;
+}
+
+.fancytree-node.fancytree-active .fancytree-title,
+.fancytree-node.fancytree-selected .fancytree-title {
+    color: #1C1C1E !important;
+}
+
+/* Status bar dark */
+.status-bar-widget {
+    background-color: #242422 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.07) !important;
+    color: #636366 !important;
+}
+
+/* Card dark */
+.card {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: none !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Table dark */
+.table {
+    color: #F2F2F7 !important;
+}
+
+.table th {
+    color: #636366 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.table td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Note book card dark */
+.note-book-card {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    background-color: transparent !important;
+}
+
+.note-book-card:hover {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+}
+
+.note-book-card .note-book-title {
+    color: #F2F2F7 !important;
+}
+
+/* Inline title dark */
+.inline-title-widget .note-title {
+    color: #F2F2F7 !important;
+}
+
+/* Promoted attributes dark */
+.promoted-attributes-container {
+    background-color: rgba(255, 255, 255, 0.02) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.promoted-attribute-item {
+    background-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Code editor dark */
+.CodeMirror,
+.cm-editor {
+    background-color: #1C1C1E !important;
+    color: #F2F2F7 !important;
+}
+
+/* Floating buttons dark */
+.floating-buttons {
+    background-color: rgba(44, 44, 46, 0.92) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Quick search dark */
+.quick-search input {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    color: #F2F2F7 !important;
+}
+
+.quick-search input:focus {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    outline: 2px solid rgba(255, 204, 2, 0.5) !important;
+}
+
+/* Breadcrumb dark */
+.breadcrumb-widget {
+    color: #636366 !important;
+}
+
+.breadcrumb-widget a {
+    color: #636366 !important;
+}
+
+.breadcrumb-widget a:hover {
+    color: #8E8E93 !important;
+}
+
+/* Selection dark */
+::selection {
+    background-color: rgba(255, 204, 2, 0.35) !important;
+    color: inherit !important;
+}
+
+/* Scrollbars dark */
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.18) !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.28) !important;
+}

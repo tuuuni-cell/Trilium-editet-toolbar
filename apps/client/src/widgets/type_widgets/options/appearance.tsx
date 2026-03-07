@@ -31,6 +31,8 @@ interface Theme {
 }
 
 const BUILTIN_THEMES: Theme[] = [
+    { val: "apple-notes", title: t("theme.apple-notes") },
+    { val: "apple-notes-dark", title: t("theme.apple-notes-dark") },
     { val: "next", title: t("theme.triliumnext") },
     { val: "next-light", title: t("theme.triliumnext-light") },
     { val: "next-dark", title: t("theme.triliumnext-dark") },

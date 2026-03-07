@@ -1,0 +1,1484 @@
+/**
+ * Apple Notes Theme for Trilium Notes
+ *
+ * A clean, minimal theme inspired by Apple Notes:
+ * - Warm cream/beige sidebar
+ * - Bright white content area
+ * - Apple Notes yellow accent (#FFCC02)
+ * - System sans-serif typography
+ * - Minimal chrome, maximum content
+ */
+
+@import url(./theme-next/base.css);
+
+/* ============================================================
+   ROOT VARIABLES — Apple Notes Color Palette
+   ============================================================ */
+
+:root {
+    --theme-style: light;
+
+    /* --- Backgrounds --- */
+    --main-background-color: #ffffff;
+    --accented-background-color: #F7F6F2;
+    --more-accented-background-color: #ECEAE0;
+    --root-background: #E8E6DF;
+
+    /* --- Text --- */
+    --main-text-color: #1C1C1E;
+    --muted-text-color: #8E8E93;
+    --link-color: #007AFF;
+    --link-hover-color: #0056b3;
+    --link-hover-background: transparent;
+    --link-selection-outline-color: rgba(0, 122, 255, 0.35);
+
+    /* --- Borders --- */
+    --main-border-color: #E0DDD4;
+    --subtle-border-color: rgba(0, 0, 0, 0.07);
+    --dropdown-border-color: rgba(0, 0, 0, 0.12);
+    --dropdown-shadow-opacity: 0.12;
+
+    /* --- Apple Notes Yellow Accent --- */
+    --apple-accent: #FFCC02;
+    --apple-accent-hover: #FFD740;
+    --apple-accent-dark: #E6B800;
+
+    /* --- Left Pane (Note Tree Sidebar) --- */
+    --left-pane-background-color: #F0EEE6;
+    --left-pane-text-color: #1C1C1E;
+    --left-pane-icon-color: #636366;
+    --left-pane-collapsed-border-color: rgba(0, 0, 0, 0.08);
+
+    /* Tree item states */
+    --left-pane-item-hover-background: rgba(0, 0, 0, 0.05);
+    --left-pane-item-selected-background: #FFCC02;
+    --left-pane-item-selected-color: #1C1C1E;
+    --left-pane-item-selected-shadow: none;
+    --left-pane-item-action-button-background: rgba(0, 0, 0, 0.08);
+    --left-pane-item-action-button-color: #636366;
+    --left-pane-item-action-button-hover-background: rgba(0, 0, 0, 0.15);
+    --left-pane-item-action-button-hover-shadow: none;
+    --left-pane-item-selected-action-button-hover-shadow: none;
+
+    /* Active/hover item */
+    --hover-item-text-color: #1C1C1E;
+    --hover-item-background-color: rgba(0, 0, 0, 0.05);
+    --hover-item-border-color: transparent;
+    --active-item-text-color: #1C1C1E;
+    --active-item-background-color: #FFCC02;
+    --active-item-border-color: transparent;
+
+    /* --- Launcher Pane (Icon Sidebar) --- */
+    --launcher-pane-background-color: unset;
+    --launcher-pane-text-color: unset;
+    --launcher-pane-vert-size: 46px;
+    --launcher-pane-horiz-size: 46px;
+    --launcher-pane-vert-icon-size: 130%;
+    --launcher-pane-vert-button-margin: 5px;
+    --launcher-pane-vert-button-gap: 2px;
+
+    --launcher-pane-vert-background-color: #E8E6DF;
+    --launcher-pane-vert-text-color: #636366;
+    --launcher-pane-vert-button-hover-color: #1C1C1E;
+    --launcher-pane-vert-button-hover-background: rgba(255, 204, 2, 0.35);
+    --launcher-pane-vert-button-hover-shadow: none;
+    --launcher-pane-vert-button-focus-outline-color: #FFCC02;
+
+    --launcher-pane-horiz-background-color: #F0EEE6;
+    --launcher-pane-horiz-text-color: #636366;
+    --launcher-pane-horiz-button-hover-color: #1C1C1E;
+    --launcher-pane-horiz-button-hover-background: rgba(255, 204, 2, 0.3);
+    --launcher-pane-horiz-button-hover-shadow: none;
+    --launcher-pane-horiz-button-focus-outline-color: #FFCC02;
+    --launcher-pane-horiz-border-color: rgba(0, 0, 0, 0.08);
+
+    /* --- Tabs --- */
+    --tab-bar-height: 42px;
+    --tab-height: 30px;
+    --active-tab-background-color: #ffffff;
+    --active-tab-hover-background-color: #ffffff;
+    --active-tab-text-color: #1C1C1E;
+    --active-tab-icon-color: #636366;
+    --active-tab-shadow: 0 1px 3px rgba(0,0,0,0.10);
+    --active-tab-dragging-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    --inactive-tab-background-color: transparent;
+    --inactive-tab-hover-background-color: rgba(0, 0, 0, 0.05);
+    --inactive-tab-text-color: #8E8E93;
+    --tab-close-button-hover-background: rgba(0, 0, 0, 0.15);
+    --tab-close-button-hover-color: #1C1C1E;
+    --new-tab-button-background: rgba(0, 0, 0, 0.06);
+    --new-tab-button-color: #636366;
+    --new-tab-button-shadow: none;
+    --new-tab-button-hover-background: rgba(0, 0, 0, 0.12);
+    --new-tab-button-hover-color: #1C1C1E;
+
+    /* --- Inputs --- */
+    --input-background-color: rgba(0, 0, 0, 0.06);
+    --input-text-color: #1C1C1E;
+    --input-placeholder-color: rgba(60, 60, 67, 0.45);
+    --input-selection-background: #FFCC02;
+    --input-selection-text-color: #1C1C1E;
+    --input-hover-background: rgba(0, 0, 0, 0.10);
+    --input-hover-color: #1C1C1E;
+    --input-focus-outline-color: #FFCC02;
+    --input-focus-background: rgba(255, 255, 255, 0.9);
+    --input-focus-color: #1C1C1E;
+    --input-action-button-color: #636366;
+    --input-action-button-hover: #1C1C1E;
+    --radio-checkbox-background: rgba(0, 0, 0, 0.1);
+    --radio-checkbox-hover-background: rgba(0, 0, 0, 0.18);
+    --radio-checkbox-indicator-color: #1C1C1E;
+
+    /* --- Buttons --- */
+    --button-background-color: transparent;
+    --button-border-color: rgba(0, 0, 0, 0.12);
+    --button-text-color: #1C1C1E;
+    --button-border-radius: 8px;
+    --button-disabled-background-color: rgba(0, 0, 0, 0.06);
+    --button-disabled-text-color: rgba(60, 60, 67, 0.45);
+    --primary-button-background-color: #FFCC02;
+    --primary-button-text-color: #1C1C1E;
+    --primary-button-border-color: #FFCC02;
+    --cmd-button-background-color: rgba(0, 0, 0, 0.06);
+    --cmd-button-text-color: #1C1C1E;
+    --cmd-button-hover-background-color: rgba(0, 0, 0, 0.12);
+    --cmd-button-hover-text-color: #1C1C1E;
+    --cmd-button-shadow-color: transparent;
+    --cmd-button-icon-color: #636366;
+    --cmd-button-keyboard-shortcut-background: rgba(0, 0, 0, 0.08);
+    --cmd-button-keyboard-shortcut-color: #636366;
+    --cmd-button-disabled-opacity: 0.4;
+    --button-group-active-button-background: rgba(255, 204, 2, 0.4);
+    --button-group-active-button-text-color: #1C1C1E;
+    --icon-button-color: #636366;
+    --icon-button-hover-background: rgba(0, 0, 0, 0.08);
+    --icon-button-hover-color: #1C1C1E;
+
+    /* --- Dropdown / Menus --- */
+    --menu-text-color: #1C1C1E;
+    --menu-background-color: rgba(252, 251, 247, 0.95);
+    --menu-background-color-no-backdrop: #FAFAF7;
+    --menu-item-icon-color: #636366;
+    --menu-item-disabled-opacity: 0.4;
+    --menu-item-keyboard-shortcut-color: rgba(60, 60, 67, 0.5);
+    --menu-item-arrow-color: rgba(60, 60, 67, 0.5);
+    --menu-item-delimiter-color: rgba(0, 0, 0, 0.08);
+    --menu-item-group-header-color: rgba(60, 60, 67, 0.45);
+    --menu-section-background-color: rgba(0, 0, 0, 0.03);
+    --dropdown-item-icon-destructive-color: #FF3B30;
+    --dropdown-backdrop-filter: blur(16px) saturate(5);
+    --dropdown-border-radius: 12px;
+    --menu-padding-size: 6px;
+
+    /* --- Modals --- */
+    --modal-background-color: #FAFAF7;
+    --modal-backdrop-color: rgba(0, 0, 0, 0.4);
+    --modal-shadow-color: rgba(0, 0, 0, 0.2);
+    --modal-border-color: rgba(0, 0, 0, 0.12);
+    --modal-title-color: #8E8E93;
+    --modal-control-button-background: rgba(0, 0, 0, 0.08);
+    --modal-control-button-color: #636366;
+    --modal-control-button-hover-color: #1C1C1E;
+    --modal-control-button-hover-background: rgba(0, 0, 0, 0.15);
+    --modal-close-button-hover-background: #FF3B30;
+    --modal-footer-background: rgba(0, 0, 0, 0.03);
+    --modal-footer-color: rgba(60, 60, 67, 0.5);
+
+    /* --- Toasts --- */
+    --toast-background: rgba(28, 28, 30, 0.85);
+    --toast-text-color: white;
+    --toast-close-button-background: rgba(255, 255, 255, 0.2);
+
+    /* --- Quick Search --- */
+    --quick-search-background: rgba(0, 0, 0, 0.07);
+    --quick-search-color: rgba(60, 60, 67, 0.5);
+    --quick-search-hover-background: rgba(0, 0, 0, 0.12);
+    --quick-search-focus-border: rgba(255, 204, 2, 0.5);
+    --quick-search-focus-background: rgba(255, 255, 255, 0.9);
+    --quick-search-focus-color: #1C1C1E;
+    --quick-search-result-content-background: rgba(0, 0, 0, 0.05);
+    --quick-search-result-highlight-color: #B8860B;
+
+    /* --- Scrollbars --- */
+    --scrollbar-thumb-color: rgba(0, 0, 0, 0.18);
+    --scrollbar-thumb-hover-color: rgba(0, 0, 0, 0.28);
+    --scrollbar-background-color: transparent;
+    --selection-background-color: rgba(255, 204, 2, 0.4);
+
+    /* --- Right Pane --- */
+    --right-pane-background-color: #ffffff;
+    --right-pane-item-hover-background: rgba(0, 0, 0, 0.05);
+    --right-pane-item-hover-color: inherit;
+    --right-pane-heading-color: #8E8E93;
+
+    /* --- Status Bar --- */
+    --status-bar-border-color: rgba(0, 0, 0, 0.1);
+    --bottom-panel-background-color: rgba(250, 250, 247, 0.95);
+    --bottom-panel-title-bar-background-color: rgba(0, 0, 0, 0.04);
+
+    /* --- Gutter (pane resize) --- */
+    --gutter-color: transparent;
+    --gutter-hover-color: rgba(255, 204, 2, 0.4);
+
+    /* --- Center Pane --- */
+    --center-pane-border-radius: 0;
+
+    /* --- Classic toolbar (inside ribbon) --- */
+    --classic-toolbar-vert-layout-background-color: rgba(255, 255, 255, 0.9);
+    --classic-toolbar-horiz-layout-background-color: #ffffff;
+
+    /* --- Typography --- */
+    --main-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    --tree-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    --detail-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    --monospace-font-family: "SF Mono", "JetBrains Mono", Consolas, "Courier New", monospace;
+    --main-font-size: 14px;
+
+    /* --- Floating Buttons --- */
+    --floating-button-background-color: rgba(240, 238, 230, 0.95);
+    --floating-button-color: #636366;
+    --floating-button-shadow-color: rgba(0, 0, 0, 0.12);
+    --floating-button-hover-background: rgba(255, 204, 2, 0.25);
+    --floating-button-hover-color: #1C1C1E;
+    --floating-button-show-button-background: rgba(0, 0, 0, 0.08);
+    --floating-button-show-button-color: #636366;
+    --floating-button-show-button-shadow: none;
+    --floating-button-show-button-hover-background: rgba(0, 0, 0, 0.15);
+    --floating-button-show-button-hover-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    --floating-button-hide-button-background: rgba(0, 0, 0, 0.05);
+    --floating-button-hide-button-color: #8E8E93;
+
+    /* --- Note icons --- */
+    --note-icon-background-color: #8E8E93;
+    --note-icon-color: white;
+    --note-icon-hover-background-color: #636366;
+
+    /* --- Badges --- */
+    --badge-background-color: rgba(0, 0, 0, 0.07);
+    --badge-text-color: #8E8E93;
+    --badge-temporaraily-editable-background-color: #34C759;
+    --badge-read-only-background-color: #FF3B30;
+    --badge-share-background-color: #8E8E93;
+    --badge-clipped-note-background-color: #007AFF;
+    --badge-execute-background-color: #AF52DE;
+    --badge-active-content-background-color: #32ADE6;
+
+    /* --- Promoted attributes --- */
+    --promoted-attribute-card-background-color: rgba(0, 0, 0, 0.05);
+    --promoted-attribute-card-shadow: none;
+
+    /* --- Alerts --- */
+    --alert-bar-background: rgba(255, 204, 2, 0.12);
+
+    /* --- CKEditor --- */
+    --ck-editor-popup-border-color: var(--dropdown-border-color);
+    --ck-editor-toolbar-button-on-background: rgba(255, 204, 2, 0.3);
+    --ck-editor-toolbar-button-on-color: #1C1C1E;
+    --ck-editor-toolbar-button-on-shadow: none;
+    --ck-editor-toolbar-dropdown-button-open-background: rgba(0, 0, 0, 0.06);
+
+    /* --- Cards --- */
+    --card-background-color: rgba(0, 0, 0, 0.04);
+    --card-background-hover-color: rgba(0, 0, 0, 0.08);
+    --card-border-color: transparent;
+    --card-shadow-color: rgba(0, 0, 0, 0.06);
+    --card-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+
+    /* --- Note list view --- */
+    --note-list-view-icon-color: #636366;
+    --note-list-view-large-icon-background: #8E8E93;
+    --note-list-view-large-icon-color: white;
+    --note-list-view-search-result-highlight-background: transparent;
+    --note-list-view-search-result-highlight-color: #B8860B;
+    --note-list-view-content-background: rgba(0, 0, 0, 0.05);
+    --note-list-view-content-search-result-highlight-background: #B8860B;
+    --note-list-view-content-search-result-highlight-color: white;
+
+    /* --- Tooltips --- */
+    --tooltip-background-color: rgba(252, 252, 252, 0.95);
+    --tooltip-foreground-color: rgba(28, 28, 30, 0.85);
+    --tooltip-shadow-color: rgba(0, 0, 0, 0.12);
+
+    /* --- Help --- */
+    --help-background-color: rgba(252, 252, 252, 0.95);
+    --help-card-background: rgba(0, 0, 0, 0.04);
+    --help-card-shadow: 1px 1px 3px rgba(0, 0, 0, 0.08);
+    --help-card-heading-color: #8E8E93;
+    --help-kbd-shortcut-color: #1C1C1E;
+    --help-kbd-shortcut-background: white;
+    --help-kbd-shortcut-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.1);
+    --help-code-color: #1C1C1E;
+    --help-code-background: rgba(0, 0, 0, 0.07);
+
+    /* --- Misc --- */
+    --mermaid-theme: default;
+    --code-block-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --contextual-help-icon-color: #007AFF;
+    --global-menu-update-available-badge-background-color: #34C759;
+    --global-menu-update-available-badge-color: white;
+    --protected-session-active-icon-color: #34C759;
+    --sync-status-error-pulse-color: #FF3B30;
+    --select-arrow-svg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='transparent' stroke='%238E8E93' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>");
+    --select-group-heading-text-color: #8E8E93;
+    --select-focus-background: white;
+    --select-focus-text-color: #1C1C1E;
+    --select-dropdown-text-color: #1C1C1E;
+
+    /* Calendar */
+    --calendar-color: #1C1C1E;
+    --calendar-weekday-labels-color: #8E8E93;
+    --calendar-day-hover-color: #1C1C1E;
+    --calendar-day-hover-background: rgba(255, 204, 2, 0.3);
+    --calendar-day-highlight-background: rgba(0, 0, 0, 0.05);
+
+    /* Timeline */
+    --timeline-bullet-color: #C7C7CC;
+    --timeline-bullet-hover-color: #FFCC02;
+    --timeline-connector-color: #E5E5EA;
+    --timeline-connector-active-color: #D1D1D6;
+    --timeline-connector-hover-blend-mode: multiply;
+}
+
+
+/* ============================================================
+   GLOBAL BODY & LAYOUT
+   ============================================================ */
+
+body#trilium-app {
+    background-color: var(--root-background);
+    font-family: var(--main-font-family);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove default rounded corners on center pane for full-height feel */
+body.layout-vertical .note-split {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+body.layout-horizontal .note-split {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+
+/* ============================================================
+   LAUNCHER PANE — Slim, Subtle Icon Bar
+   ============================================================ */
+
+#launcher-pane.vertical {
+    background-color: var(--launcher-pane-vert-background-color) !important;
+    border-inline-end: 1px solid rgba(0, 0, 0, 0.06) !important;
+    width: var(--launcher-pane-vert-size) !important;
+    min-width: var(--launcher-pane-vert-size) !important;
+}
+
+#launcher-pane.vertical .global-menu button svg path {
+    fill: #636366;
+}
+
+#launcher-pane .launcher-button {
+    border-radius: 10px !important;
+    transition: background-color 150ms ease, color 150ms ease !important;
+}
+
+#launcher-pane .launcher-button:hover {
+    background-color: rgba(255, 204, 2, 0.3) !important;
+    color: #1C1C1E !important;
+    box-shadow: none !important;
+}
+
+#launcher-pane .launcher-button:active {
+    background-color: rgba(255, 204, 2, 0.5) !important;
+    transform: scale(0.95);
+}
+
+
+/* ============================================================
+   LEFT PANE — Note Tree Sidebar
+   ============================================================ */
+
+#left-pane {
+    background-color: var(--left-pane-background-color) !important;
+    border-inline-end: 1px solid rgba(0, 0, 0, 0.07) !important;
+}
+
+/* Quick search at top of left pane */
+.quick-search {
+    padding: 8px 10px 6px !important;
+}
+
+.quick-search input {
+    border-radius: 8px !important;
+    background-color: rgba(0, 0, 0, 0.08) !important;
+    border: none !important;
+    height: 28px !important;
+    font-size: 13px !important;
+    padding: 0 10px !important;
+    color: #1C1C1E !important;
+}
+
+.quick-search input:focus {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    outline: 2px solid rgba(255, 204, 2, 0.6) !important;
+    outline-offset: 0 !important;
+    box-shadow: none !important;
+}
+
+.quick-search input::placeholder {
+    color: rgba(60, 60, 67, 0.45) !important;
+}
+
+/* Tree Items — Apple Notes folder/note list style */
+.fancytree-node {
+    height: 34px !important;
+    padding: 2px 8px !important;
+    border-radius: 8px !important;
+    margin: 1px 6px !important;
+    font-size: 13.5px !important;
+    border: none !important;
+    transition: background-color 120ms ease !important;
+}
+
+.fancytree-node:hover:not(.fancytree-active):not(.fancytree-selected) {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+    border-color: transparent !important;
+}
+
+.fancytree-node.fancytree-active,
+.fancytree-node.fancytree-selected {
+    background-color: #FFCC02 !important;
+    color: #1C1C1E !important;
+    box-shadow: none !important;
+    font-weight: 500 !important;
+}
+
+.fancytree-node.fancytree-active .fancytree-title,
+.fancytree-node.fancytree-selected .fancytree-title {
+    color: #1C1C1E !important;
+}
+
+/* Expander arrows — clean chevrons */
+.fancytree-node:not(.fancytree-loading) .fancytree-expander:before {
+    font-size: 16px !important;
+    color: #8E8E93 !important;
+    top: 1px !important;
+}
+
+.fancytree-node.fancytree-active .fancytree-expander:before,
+.fancytree-node.fancytree-selected .fancytree-expander:before {
+    color: #636366 !important;
+}
+
+/* Tree icons */
+.fancytree-node .note-icon {
+    font-size: 14px !important;
+    color: #636366;
+    margin-inline-end: 4px !important;
+}
+
+.fancytree-node.fancytree-active .note-icon,
+.fancytree-node.fancytree-selected .note-icon {
+    color: #1C1C1E !important;
+}
+
+/* Tree action buttons (appear on hover) */
+.fancytree-node .node-action-wrapper {
+    opacity: 0;
+    transition: opacity 100ms ease;
+}
+
+.fancytree-node:hover .node-action-wrapper {
+    opacity: 1;
+}
+
+/* Scrollbar in left pane */
+#left-pane ::-webkit-scrollbar {
+    width: 4px !important;
+}
+
+#left-pane ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15) !important;
+    border-radius: 2px !important;
+}
+
+
+/* ============================================================
+   TAB ROW — Minimal, Clean Tabs
+   ============================================================ */
+
+.tab-row-container {
+    background-color: #F0EEE6 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07) !important;
+    height: var(--tab-bar-height) !important;
+}
+
+/* Individual tabs */
+.note-tab {
+    border-radius: 8px 8px 0 0 !important;
+    font-size: 13px !important;
+    max-width: 200px !important;
+    min-width: 80px !important;
+}
+
+.note-tab.active {
+    background-color: #ffffff !important;
+    box-shadow: 0 -1px 0 rgba(255, 204, 2, 0.6), 0 2px 4px rgba(0, 0, 0, 0.06) !important;
+    color: #1C1C1E !important;
+}
+
+.note-tab:not(.active) {
+    color: #8E8E93 !important;
+    background-color: transparent !important;
+}
+
+.note-tab:not(.active):hover {
+    background-color: rgba(0, 0, 0, 0.04) !important;
+    color: #636366 !important;
+}
+
+/* Tab history navigation (back/forward buttons) */
+.tab-history-navigation-widget button {
+    color: #636366 !important;
+    border-radius: 6px !important;
+    width: 28px !important;
+    height: 28px !important;
+}
+
+.tab-history-navigation-widget button:hover {
+    background-color: rgba(0, 0, 0, 0.08) !important;
+    color: #1C1C1E !important;
+}
+
+.tab-history-navigation-widget button:disabled {
+    color: rgba(60, 60, 67, 0.3) !important;
+}
+
+
+/* ============================================================
+   NOTE CONTENT AREA — Clean White Editor
+   ============================================================ */
+
+/* Note split (main content panel) */
+.note-split {
+    background-color: #ffffff !important;
+}
+
+/* Title row at the top of the note */
+.title-row {
+    padding: 20px 32px 8px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+    align-items: center !important;
+    background-color: #ffffff !important;
+}
+
+/* Note title */
+.note-title-widget input.note-title,
+.note-title {
+    font-size: 24px !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.3px !important;
+    color: #1C1C1E !important;
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    width: 100% !important;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif !important;
+}
+
+.note-title-widget input.note-title:focus {
+    outline: none !important;
+}
+
+/* Note icon in title row */
+.note-icon-widget {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 18px !important;
+    border-radius: 6px !important;
+    background-color: rgba(0, 0, 0, 0.06) !important;
+    color: #636366 !important;
+    transition: background-color 150ms ease !important;
+}
+
+.note-icon-widget:hover {
+    background-color: rgba(255, 204, 2, 0.3) !important;
+    color: #1C1C1E !important;
+}
+
+/* Scrollable content area — generous padding, Apple Notes style */
+.scrolling-container {
+    padding: 0 !important;
+    overflow-y: auto !important;
+}
+
+.scrolling-container > .ck-editor__editable,
+.scrolling-container > .note-detail-text,
+.note-detail {
+    padding: 24px 48px 40px !important;
+    max-width: 900px !important;
+    margin: 0 auto !important;
+}
+
+/* Content area scrollbar */
+.scrolling-container::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+.scrolling-container::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15) !important;
+    border-radius: 3px !important;
+}
+
+.scrolling-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.25) !important;
+}
+
+
+/* ============================================================
+   RIBBON / TOOLBAR — Simplified, Apple Notes style
+   ============================================================ */
+
+/* Collapse the ribbon to just the formatting toolbar — hide tab headers */
+.ribbon-container .ribbon-top-row {
+    background-color: #F7F6F2 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+    padding: 0 8px !important;
+    min-height: 38px !important;
+}
+
+/* Ribbon tab titles — minimal pill style */
+.ribbon-tab-title {
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    color: #8E8E93 !important;
+    border-radius: 6px !important;
+    padding: 3px 10px !important;
+    margin: 4px 2px !important;
+    border: none !important;
+    background: transparent !important;
+    transition: background-color 120ms ease, color 120ms ease !important;
+}
+
+.ribbon-tab-title:hover {
+    background-color: rgba(0, 0, 0, 0.07) !important;
+    color: #1C1C1E !important;
+}
+
+.ribbon-tab-title.active {
+    background-color: rgba(255, 204, 2, 0.3) !important;
+    color: #1C1C1E !important;
+    font-weight: 600 !important;
+}
+
+/* Ribbon body — clean white panel */
+.ribbon-body {
+    background-color: #F7F6F2 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+    padding: 6px 12px !important;
+}
+
+/* Ribbon buttons */
+.ribbon-button-container button,
+.ribbon-button-container .btn {
+    border-radius: 7px !important;
+    font-size: 12.5px !important;
+    padding: 3px 10px !important;
+    border: none !important;
+    background: transparent !important;
+    color: #636366 !important;
+    transition: background-color 120ms ease, color 120ms ease !important;
+}
+
+.ribbon-button-container button:hover,
+.ribbon-button-container .btn:hover {
+    background-color: rgba(0, 0, 0, 0.08) !important;
+    color: #1C1C1E !important;
+}
+
+/* CKEditor formatting toolbar — clean icons */
+.ck.ck-toolbar {
+    background: transparent !important;
+    border: none !important;
+    padding: 2px 4px !important;
+}
+
+.ck.ck-toolbar .ck-toolbar__items {
+    gap: 1px !important;
+}
+
+.ck.ck-button {
+    border-radius: 6px !important;
+    padding: 4px 6px !important;
+    min-width: 28px !important;
+    min-height: 28px !important;
+    border: none !important;
+    background: transparent !important;
+    color: #636366 !important;
+    transition: background-color 100ms ease, color 100ms ease !important;
+}
+
+.ck.ck-button:hover:not(.ck-disabled) {
+    background: rgba(0, 0, 0, 0.08) !important;
+    color: #1C1C1E !important;
+}
+
+.ck.ck-button.ck-on {
+    background: rgba(255, 204, 2, 0.3) !important;
+    color: #1C1C1E !important;
+}
+
+.ck.ck-button.ck-on:hover:not(.ck-disabled) {
+    background: rgba(255, 204, 2, 0.45) !important;
+}
+
+
+/* ============================================================
+   NOTE ACTIONS — Clean Icon Buttons
+   ============================================================ */
+
+.note-actions-widget,
+.note-actions-custom-widget {
+    display: flex !important;
+    gap: 2px !important;
+    align-items: center !important;
+}
+
+.note-actions-widget button,
+.note-actions-custom-widget button {
+    border-radius: 7px !important;
+    width: 30px !important;
+    height: 30px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: transparent !important;
+    border: none !important;
+    color: #636366 !important;
+    font-size: 16px !important;
+    transition: background-color 120ms ease, color 120ms ease !important;
+}
+
+.note-actions-widget button:hover,
+.note-actions-custom-widget button:hover {
+    background-color: rgba(0, 0, 0, 0.08) !important;
+    color: #1C1C1E !important;
+}
+
+
+/* ============================================================
+   FLOATING BUTTONS — Subtle, Apple Notes style
+   ============================================================ */
+
+.floating-buttons {
+    background-color: rgba(240, 238, 230, 0.92) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    padding: 3px !important;
+}
+
+.floating-buttons button {
+    border-radius: 9px !important;
+    color: #636366 !important;
+    transition: background-color 120ms ease, color 120ms ease !important;
+}
+
+.floating-buttons button:hover {
+    background-color: rgba(255, 204, 2, 0.25) !important;
+    color: #1C1C1E !important;
+}
+
+
+/* ============================================================
+   SCROLLBARS — Thin macOS-style
+   ============================================================ */
+
+::-webkit-scrollbar {
+    width: 6px !important;
+    height: 6px !important;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.18) !important;
+    border-radius: 3px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.28) !important;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent !important;
+}
+
+
+/* ============================================================
+   CONTEXT MENU / DROPDOWNS — Apple macOS style
+   ============================================================ */
+
+.dropdown-menu {
+    border-radius: 12px !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.06) !important;
+    padding: 6px !important;
+    background-color: rgba(252, 251, 247, 0.95) !important;
+    backdrop-filter: blur(16px) saturate(5) !important;
+    overflow: hidden !important;
+}
+
+.dropdown-item {
+    border-radius: 8px !important;
+    padding: 6px 10px !important;
+    font-size: 13.5px !important;
+    color: #1C1C1E !important;
+    transition: background-color 80ms ease !important;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: #FFCC02 !important;
+    color: #1C1C1E !important;
+}
+
+.dropdown-divider {
+    margin: 4px 6px !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+
+/* ============================================================
+   MODAL DIALOGS — Clean Apple Sheet style
+   ============================================================ */
+
+.modal-content {
+    border-radius: 14px !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18) !important;
+    overflow: hidden !important;
+    background-color: #FAFAF7 !important;
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07) !important;
+    padding: 16px 20px 14px !important;
+    background-color: #F5F4EE !important;
+}
+
+.modal-title {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.1px !important;
+    color: #1C1C1E !important;
+}
+
+.modal-body {
+    padding: 16px 20px !important;
+}
+
+.modal-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.07) !important;
+    padding: 12px 20px !important;
+    background-color: rgba(0, 0, 0, 0.02) !important;
+}
+
+.modal-footer .btn-primary {
+    background-color: #FFCC02 !important;
+    border-color: #FFCC02 !important;
+    color: #1C1C1E !important;
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+    padding: 6px 16px !important;
+}
+
+.modal-footer .btn-primary:hover {
+    background-color: #FFD740 !important;
+    border-color: #FFD740 !important;
+}
+
+.btn-close {
+    border-radius: 50% !important;
+    opacity: 0.5 !important;
+    transition: opacity 120ms ease, background-color 120ms ease !important;
+}
+
+.btn-close:hover {
+    opacity: 1 !important;
+    background-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+
+/* ============================================================
+   PROMOTED ATTRIBUTES — Subtle, Clean Display
+   ============================================================ */
+
+.promoted-attributes-container {
+    padding: 8px 48px !important;
+    background-color: rgba(0, 0, 0, 0.02) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+.promoted-attribute-item {
+    border-radius: 8px !important;
+    background-color: rgba(0, 0, 0, 0.04) !important;
+    padding: 4px 10px !important;
+    font-size: 12.5px !important;
+}
+
+
+/* ============================================================
+   NOTE BADGES — Subtle Tags
+   ============================================================ */
+
+.note-badges-widget .badge {
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    border-radius: 20px !important;
+    padding: 2px 8px !important;
+    background-color: rgba(0, 0, 0, 0.07) !important;
+    color: #636366 !important;
+}
+
+.note-badges-widget .badge-read-only {
+    background-color: rgba(255, 59, 48, 0.12) !important;
+    color: #FF3B30 !important;
+}
+
+.note-badges-widget .badge-share {
+    background-color: rgba(142, 142, 147, 0.12) !important;
+    color: #636366 !important;
+}
+
+
+/* ============================================================
+   RIGHT PANE / TOC SIDEBAR — Clean Apple panel style
+   ============================================================ */
+
+#right-pane {
+    background-color: #F7F6F2 !important;
+    border-inline-start: 1px solid rgba(0, 0, 0, 0.07) !important;
+}
+
+.toc-widget h4,
+.right-pane-title {
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+    color: #8E8E93 !important;
+    padding: 12px 14px 6px !important;
+}
+
+.toc-widget ul {
+    padding: 0 6px !important;
+}
+
+.toc-widget ul li a {
+    font-size: 13px !important;
+    color: #3C3C43 !important;
+    padding: 4px 10px !important;
+    border-radius: 6px !important;
+    display: block !important;
+    transition: background-color 100ms ease !important;
+}
+
+.toc-widget ul li a:hover {
+    background-color: rgba(0, 0, 0, 0.06) !important;
+    text-decoration: none !important;
+    color: #1C1C1E !important;
+}
+
+
+/* ============================================================
+   STATUS BAR — Minimal, Footer bar
+   ============================================================ */
+
+.status-bar-widget {
+    background-color: #F7F6F2 !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.07) !important;
+    font-size: 11px !important;
+    color: #8E8E93 !important;
+    padding: 2px 12px !important;
+    height: 22px !important;
+}
+
+
+/* ============================================================
+   BREADCRUMB — Subtle path display
+   ============================================================ */
+
+.breadcrumb-widget {
+    font-size: 12px !important;
+    color: #8E8E93 !important;
+    padding: 4px 48px !important;
+}
+
+.breadcrumb-widget a {
+    color: #8E8E93 !important;
+}
+
+.breadcrumb-widget a:hover {
+    color: #636366 !important;
+    text-decoration: none !important;
+}
+
+.breadcrumb-widget .separator {
+    color: #C7C7CC !important;
+}
+
+
+/* ============================================================
+   GLOBAL MENU — Clean hamburger menu
+   ============================================================ */
+
+.global-menu-button {
+    border-radius: 10px !important;
+    transition: background-color 150ms ease !important;
+}
+
+.global-menu-button:hover {
+    background-color: rgba(255, 204, 2, 0.3) !important;
+}
+
+
+/* ============================================================
+   CODE NOTES — Clean code editor area
+   ============================================================ */
+
+.CodeMirror,
+.cm-editor {
+    font-family: var(--monospace-font-family) !important;
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+    background-color: #FAFAF8 !important;
+}
+
+
+/* ============================================================
+   NOTE LIST (NoteList widget) — Apple Notes list style
+   ============================================================ */
+
+.note-list-widget .note-list {
+    padding: 0 !important;
+}
+
+/* Note cards in list view */
+.note-book-card {
+    border: none !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+    border-radius: 0 !important;
+    padding: 10px 16px !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    transition: background-color 100ms ease !important;
+}
+
+.note-book-card:hover {
+    background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+.note-book-card .note-book-title {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #1C1C1E !important;
+    margin-bottom: 2px !important;
+}
+
+.note-book-card .note-book-content {
+    font-size: 12.5px !important;
+    color: #8E8E93 !important;
+    line-height: 1.4 !important;
+}
+
+
+/* ============================================================
+   SEARCH RESULT — Clean list style
+   ============================================================ */
+
+.search-result-widget {
+    background-color: #ffffff !important;
+}
+
+.search-result-widget .note-list-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+    padding: 10px 16px !important;
+    border-radius: 0 !important;
+    transition: background-color 100ms ease !important;
+}
+
+.search-result-widget .note-list-item:hover {
+    background-color: rgba(255, 204, 2, 0.1) !important;
+}
+
+.search-result-widget .note-list-item.active {
+    background-color: rgba(255, 204, 2, 0.2) !important;
+}
+
+
+/* ============================================================
+   FORM ELEMENTS — Clean inputs and controls
+   ============================================================ */
+
+.form-control {
+    border-radius: 8px !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    background-color: rgba(0, 0, 0, 0.04) !important;
+    color: #1C1C1E !important;
+    font-size: 13.5px !important;
+    padding: 6px 10px !important;
+    transition: border-color 120ms ease, background-color 120ms ease !important;
+}
+
+.form-control:focus {
+    background-color: #ffffff !important;
+    border-color: rgba(255, 204, 2, 0.7) !important;
+    box-shadow: 0 0 0 3px rgba(255, 204, 2, 0.2) !important;
+    color: #1C1C1E !important;
+    outline: none !important;
+}
+
+.form-select {
+    border-radius: 8px !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    background-color: rgba(0, 0, 0, 0.04) !important;
+    color: #1C1C1E !important;
+    font-size: 13.5px !important;
+    padding: 6px 30px 6px 10px !important;
+}
+
+.form-select:focus {
+    border-color: rgba(255, 204, 2, 0.7) !important;
+    box-shadow: 0 0 0 3px rgba(255, 204, 2, 0.2) !important;
+    outline: none !important;
+}
+
+/* General button styling */
+.btn {
+    border-radius: 8px !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+    padding: 5px 14px !important;
+    transition: background-color 120ms ease, border-color 120ms ease !important;
+}
+
+.btn-primary {
+    background-color: #FFCC02 !important;
+    border-color: #FFCC02 !important;
+    color: #1C1C1E !important;
+}
+
+.btn-primary:hover {
+    background-color: #FFD740 !important;
+    border-color: #FFD740 !important;
+    color: #1C1C1E !important;
+}
+
+.btn-secondary {
+    background-color: rgba(0, 0, 0, 0.07) !important;
+    border-color: transparent !important;
+    color: #1C1C1E !important;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(0, 0, 0, 0.12) !important;
+    color: #1C1C1E !important;
+}
+
+
+/* ============================================================
+   TOASTS / NOTIFICATIONS — Apple Notification style
+   ============================================================ */
+
+.toast-container .toast {
+    border-radius: 12px !important;
+    background-color: rgba(28, 28, 30, 0.88) !important;
+    backdrop-filter: blur(20px) !important;
+    border: none !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2) !important;
+    color: white !important;
+    padding: 10px 14px !important;
+    font-size: 13.5px !important;
+}
+
+
+/* ============================================================
+   TOOLTIP — Subtle, Apple HUD style
+   ============================================================ */
+
+.tooltip .tooltip-inner {
+    border-radius: 8px !important;
+    background-color: rgba(28, 28, 30, 0.85) !important;
+    color: white !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    padding: 5px 10px !important;
+    backdrop-filter: blur(8px) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+
+/* ============================================================
+   FIND WIDGET — Subtle floating bar
+   ============================================================ */
+
+.find-widget {
+    background-color: rgba(250, 250, 247, 0.95) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12) !important;
+    padding: 8px 12px !important;
+}
+
+.find-widget input {
+    border-radius: 7px !important;
+    border: none !important;
+    background: rgba(0, 0, 0, 0.07) !important;
+    padding: 4px 10px !important;
+    font-size: 13px !important;
+    color: #1C1C1E !important;
+}
+
+.find-widget input:focus {
+    background: rgba(255, 255, 255, 0.9) !important;
+    outline: 2px solid rgba(255, 204, 2, 0.5) !important;
+}
+
+
+/* ============================================================
+   PANE RESIZER — Invisible until hover
+   ============================================================ */
+
+.gutter {
+    background: transparent !important;
+    transition: background 200ms ease !important;
+}
+
+.gutter:hover {
+    background: rgba(255, 204, 2, 0.35) !important;
+}
+
+
+/* ============================================================
+   PANE TOGGLES — Minimal buttons
+   ============================================================ */
+
+.left-pane-toggle-widget,
+.right-pane-toggle-widget {
+    border-radius: 7px !important;
+    color: #8E8E93 !important;
+    width: 28px !important;
+    height: 28px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: transparent !important;
+    transition: background-color 120ms ease, color 120ms ease !important;
+}
+
+.left-pane-toggle-widget:hover,
+.right-pane-toggle-widget:hover {
+    background-color: rgba(0, 0, 0, 0.08) !important;
+    color: #1C1C1E !important;
+}
+
+
+/* ============================================================
+   ZEN MODE — Full-screen clean writing
+   ============================================================ */
+
+body.zen .note-split {
+    max-width: 800px !important;
+    margin: 0 auto !important;
+}
+
+body.zen .ribbon-container {
+    display: none !important;
+}
+
+body.zen .title-row {
+    padding: 40px 48px 12px !important;
+}
+
+body.zen .scrolling-container > .ck-editor__editable,
+body.zen .note-detail {
+    padding: 24px 48px 60px !important;
+}
+
+
+/* ============================================================
+   PRINT STYLES — Clean output
+   ============================================================ */
+
+@media print {
+    #launcher-pane,
+    #left-pane,
+    .tab-row-container,
+    .ribbon-container,
+    .floating-buttons {
+        display: none !important;
+    }
+
+    .note-detail {
+        padding: 0 !important;
+        max-width: 100% !important;
+    }
+}
+
+
+/* ============================================================
+   MOBILE OVERRIDES — Responsive Apple Notes feel
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .note-detail {
+        padding: 16px 20px 32px !important;
+    }
+
+    .note-title-widget input.note-title {
+        font-size: 20px !important;
+    }
+
+    .title-row {
+        padding: 16px 20px 8px !important;
+    }
+}
+
+
+/* ============================================================
+   TREE INDENTATION LINES — Remove default, use minimal indent
+   ============================================================ */
+
+.fancytree-container ul {
+    padding-inline-start: 14px !important;
+}
+
+ul.fancytree-container {
+    border: none !important;
+    background: transparent !important;
+    padding: 6px 0 !important;
+}
+
+/* Indentation guide for nested items */
+ul.fancytree-container li {
+    position: relative !important;
+}
+
+
+/* ============================================================
+   HIGHLIGHT / SELECTION — Apple Notes yellow
+   ============================================================ */
+
+::selection {
+    background-color: rgba(255, 204, 2, 0.4) !important;
+    color: inherit !important;
+}
+
+.cm-selected,
+.cm-searchMatch-selected {
+    background-color: rgba(255, 204, 2, 0.4) !important;
+}
+
+
+/* ============================================================
+   INLINE TITLE (new layout) — Large Apple Notes title
+   ============================================================ */
+
+.inline-title-widget {
+    padding: 24px 48px 8px !important;
+}
+
+.inline-title-widget .note-title {
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.5px !important;
+    color: #1C1C1E !important;
+    line-height: 1.2 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif !important;
+}
+
+
+/* ============================================================
+   SYNC STATUS — Subtle indicator
+   ============================================================ */
+
+.sync-status-widget {
+    font-size: 12px !important;
+    color: #8E8E93 !important;
+}
+
+
+/* ============================================================
+   CALENDAR WIDGET — Clean, minimal
+   ============================================================ */
+
+.calendar-widget {
+    font-size: 12px !important;
+}
+
+.calendar-widget button {
+    border-radius: 6px !important;
+}
+
+
+/* ============================================================
+   FIXES & OVERRIDES
+   ============================================================ */
+
+/* Remove box shadows that conflict with Apple Notes flat design */
+.note-split {
+    box-shadow: none !important;
+}
+
+/* Clean up Bootstrap default styles */
+.card {
+    border: none !important;
+    border-radius: 12px !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08) !important;
+    background-color: rgba(0, 0, 0, 0.03) !important;
+}
+
+/* Clean table styles */
+.table {
+    color: var(--main-text-color) !important;
+}
+
+.table th {
+    font-weight: 600 !important;
+    color: #636366 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.table td {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Alert styles */
+.alert {
+    border-radius: 10px !important;
+    border: none !important;
+    background-color: rgba(255, 204, 2, 0.1) !important;
+    color: #1C1C1E !important;
+}
+
+.alert-warning {
+    background-color: rgba(255, 204, 2, 0.15) !important;
+}
+
+.alert-danger {
+    background-color: rgba(255, 59, 48, 0.1) !important;
+}
+
+.alert-info {
+    background-color: rgba(0, 122, 255, 0.1) !important;
+}
+
+.alert-success {
+    background-color: rgba(52, 199, 89, 0.1) !important;
+}

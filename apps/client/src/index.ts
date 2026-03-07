@@ -66,6 +66,10 @@ function loadStylesheets() {
             cssToLoad.push(`${assetPath}/stylesheets/theme-next-dark.css`);
         } else if (themeUseNextAsBase === "next-light") {
             cssToLoad.push(`${assetPath}/stylesheets/theme-next-light.css`);
+        } else if (themeUseNextAsBase === "apple-notes") {
+            cssToLoad.push(`${assetPath}/stylesheets/theme-apple-notes.css`);
+        } else if (themeUseNextAsBase === "apple-notes-dark") {
+            cssToLoad.push(`${assetPath}/stylesheets/theme-apple-notes-dark.css`);
         }
         cssToLoad.push(`${assetPath}/stylesheets/style.css`);
     }

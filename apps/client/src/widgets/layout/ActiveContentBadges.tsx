@@ -141,7 +141,10 @@ const typeMappings: Record<ActiveContentInfo["type"], {
                     { type: "separator" },
                     { label: t("theme.triliumnext"), value: "next" },
                     { label: t("theme.triliumnext-light"), value: "next-light" },
-                    { label: t("theme.triliumnext-dark"), value: "next-dark" }
+                    { label: t("theme.triliumnext-dark"), value: "next-dark" },
+                    { type: "separator" },
+                    { label: t("theme.apple-notes"), value: "apple-notes" },
+                    { label: t("theme.apple-notes-dark"), value: "apple-notes-dark" }
                 ]
             }
         ]
